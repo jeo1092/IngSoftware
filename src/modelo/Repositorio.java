@@ -24,7 +24,7 @@ public final class Repositorio {
     
     private void generarUsuarios(){
         usuarios.add(new Usuario(1,"jose","jose@gmail.com", TipoUsuario.SUPERVISORLINEA));
-        usuarios.add(new Usuario(2,"Daniel","daniel@gmail.com", TipoUsuario.SUPERVISORCALIDAD));
+        usuarios.add(new Usuario(2,"daniel","daniel@gmail.com", TipoUsuario.SUPERVISORCALIDAD));
     }
 
     public ArrayList<Usuario> getUsuarios() {

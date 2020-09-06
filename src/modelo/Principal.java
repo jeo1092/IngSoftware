@@ -5,8 +5,9 @@
  */
 package modelo;
 
+import controlador.Controlador;
 import java.util.ArrayList;
-
+import vista.*;
 /**
  *
  * @author Jose
@@ -18,7 +19,9 @@ public class Principal {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
+        Controlador control = new Controlador();
+        control.ejecutarAutenticacion();
+       
     }
     
 }
