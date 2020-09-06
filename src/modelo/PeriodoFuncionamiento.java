@@ -5,6 +5,8 @@
  */
 package modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Jose
@@ -13,9 +15,19 @@ public class PeriodoFuncionamiento {
     private int hInicio;
     private int hFinal;
     private Usuario usuario;
+    private ArrayList<Inspeccion> inspecciones;
 
     public PeriodoFuncionamiento(int hInicio) {
         this.hInicio = hInicio;
+        this.inspecciones = new ArrayList<>();
+    }
+    
+    public void agregarInspeccion(Inspeccion inspeccion){
+        inspecciones.add(inspeccion);
+    }
+
+    public ArrayList<Inspeccion> getInspecciones() {
+        return inspecciones;
     }
 
     public int gethInicio() {

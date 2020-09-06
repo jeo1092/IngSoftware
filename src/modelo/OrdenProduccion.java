@@ -26,10 +26,10 @@ public class OrdenProduccion {
         this.estadoOrden = EstadoOrden.PROCESO;
         this.lineaProduccion = lineaProduccion;
         this.periodos = new ArrayList<>();
-        iniciarPeriodo();
+        iniciarNuevoPeriodo();
     }
     
-    public final void iniciarPeriodo(){
+    public final void iniciarNuevoPeriodo(){
         periodos.add(new PeriodoFuncionamiento(generarHorario()));
     }
     
