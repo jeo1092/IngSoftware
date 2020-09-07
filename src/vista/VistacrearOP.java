@@ -20,49 +20,51 @@ public class VistacrearOP extends javax.swing.JFrame {
      * Creates new form crearOP
      */
     public VistacrearOP() {
-        initComponents();
+    initComponents();
     }
     public void ejecutar(){
     this.setVisible(true);
     this.setLocationRelativeTo(null);
+    jComboLinea.removeAllItems();
+    jComboColor.removeAllItems();
+    jComboModelo.removeAllItems();
+    jDatosOP.removeAll();
     }
     public void setControlador(Controlador control){
         jOrdenProd.setActionCommand(BTN_CREAR_ORDENP);
         jOrdenProd.addActionListener(control);
     }
     public void cargarDatosLinea(ArrayList<Integer> linea, ArrayList <String>color,ArrayList <String>modelo){
-    /*for(int i=0;repo.getLineas().size()>i;i++){
-       jComboLinea.addItem(""+repo.getLineas().get(i).getNumeroLinea());
-                                                }*/
+    
+     for(int i=0;linea.size()>i;i++){
+     jComboLinea.addItem(""+linea.get(i));
+                                                }
+    jComboLinea.addItem("");
+    for(int i=0;color.size()>i;i++){
+        jComboColor.addItem(color.get(i));
+        }
+    for(int i=0; modelo.size()>i;i++){
+    jComboModelo.addItem(modelo.get(i));
+            }
+    
     }
-    public void cargarDatoscolor(){}
-    public void cargarDatosModelo(){}
-    
-    public void agregarDatos(){
-    String numLinea=(String)jComboLinea.getSelectedItem();
-    int numOP=Integer.parseInt(jTextField1.getText());
-    
-    
-    jDatosOP.setText("Numero de Linea: "+numLinea+" \n"+"Numero de Orden de Produccion: "+numOP);
-    //jDatosOP.setText();
-                                            }
         public int getNumeroOP(){
         int numero=Integer.parseInt(jTextField1.getText());
         return numero;
         }
-        public LineaProduccion getNumLinea(){
-         LineaProduccion numLinea=(LineaProduccion)jComboLinea.getSelectedItem();
+        public int getNumLinea(){
+         int numLinea=Integer.parseInt(jComboLinea.getSelectedItem().toString());
          return numLinea;
         }
-        public Modelo getModelo(){
-        Modelo numModelo= ((Modelo)jComboModelo.getSelectedItem());
+        public String getModelo(){
+        String numModelo= ((String)jComboModelo.getSelectedItem());
         return numModelo;
         }
-        public Color getColor(){
-        Color numColor= ((Color)jComboColor.getSelectedItem());
-        return numColor;
+        public String getColor(){
+        String DescripcionColor= ((String)jComboColor.getSelectedItem());
+        return DescripcionColor;
         }
-            
+       
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -101,18 +103,22 @@ public class VistacrearOP extends javax.swing.JFrame {
 
         jLabel3.setText("Color");
 
-        jComboModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboColor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
+        jOrdenProd.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jOrdenProd.setText("Crear Orden Produccion");
+        jOrdenProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jOrdenProdActionPerformed(evt);
+            }
+        });
 
         jDatosOP.setColumns(20);
         jDatosOP.setRows(5);
         jScrollPane1.setViewportView(jDatosOP);
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton2.setText("Confirmar");
 
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton3.setText("Cancelar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,6 +126,7 @@ public class VistacrearOP extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Crear Orden de Produccion");
 
         jLabel5.setText("Numero OP");
@@ -128,36 +135,34 @@ public class VistacrearOP extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jOrdenProd)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel5))
-                        .addGap(60, 60, 60)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboColor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboModelo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField1)
-                            .addComponent(jComboLinea, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(jOrdenProd)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboLinea, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboColor, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(323, 323, 323)
+                        .addComponent(jButton3)))
+                .addGap(16, 16, 16))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(221, 221, 221))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,30 +170,30 @@ public class VistacrearOP extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboLinea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)
+                            .addComponent(jComboModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(jComboColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jComboColor, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jOrdenProd)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -203,6 +208,17 @@ public class VistacrearOP extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jOrdenProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOrdenProdActionPerformed
+        // TODO add your handling code here:
+    String numLinea=(String)jComboLinea.getSelectedItem();
+    int numOP=Integer.parseInt(jTextField1.getText());
+    String Color = (String)jComboColor.getSelectedItem();
+    String Modelo= (String)jComboModelo.getSelectedItem();
+
+    
+ jDatosOP.setText("Numero de Linea: "+numLinea+" \n"+"Numero de Orden de Produccion: "+numOP +" \n"+"Color: "+Color+" \n"+"Modelo: "+Modelo);
+    }//GEN-LAST:event_jOrdenProdActionPerformed
 
     /**
      * @param args the command line arguments
