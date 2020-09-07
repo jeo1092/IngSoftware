@@ -15,6 +15,7 @@ public class LineaProduccion {
     
     public LineaProduccion(int numeroLinea){
         this.numeroLinea = numeroLinea;
+        this.estadoLinea = EstadoLinea.LIBRE;
     }
 
     public int getNumeroLinea() {

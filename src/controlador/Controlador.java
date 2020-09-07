@@ -57,7 +57,23 @@ public class Controlador implements ActionListener{
         if(e.getActionCommand().equals(VistaPL.BTN_CREAROP)){         
             vistaCrearOP.setControlador(this);
             vistaCrearOP.ejecutar();
-            vistaCrearOP.cargarDatosLinea(repo);//no poner repositorio como parametro, seria un array
+            ArrayList<Integer> linea = new ArrayList<>();
+            ArrayList<String> colores = new ArrayList<>();
+            ArrayList<String> modelos = new ArrayList<>();
+            for(LineaProduccion p : repo.getLineas()){
+                if(p.getEstadoLinea() == EstadoLinea.LIBRE){
+                    linea.add(p.getNumeroLinea());
+                }
+            for(Color color: repo.getColores()){
+                colores.add(color.toString());
+            }
+            
+            for(Modelo modelo: repo.getModelos()){
+                modelos.add(modelo.toString());
+            }
+           
+            vistaCrearOP.cargarDatosLinea(linea,colores,modelos);
+            }
         }
         if(e.getActionCommand().equals(vistaCrearOP.BTN_CREAR_ORDENP)){
             //vistaCrearOP.agregarDatos();
@@ -73,6 +89,6 @@ public class Controlador implements ActionListener{
                 String uno = variable[0];
                 String dos = variable[1];
             }
-        }
+        }       
     }
 }

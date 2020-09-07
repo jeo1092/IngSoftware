@@ -15,13 +15,19 @@ public final class Repositorio {
     private final ArrayList<Usuario> usuarios;
     private final ArrayList<LineaProduccion> lineas;
     private ArrayList<OrdenProduccion> ordenes;
+    private ArrayList<Color> colores;
+    private ArrayList<Modelo> modelos;
 
     public Repositorio(){
         this.usuarios = new ArrayList<>();
         this.lineas = new ArrayList<>();
         this.ordenes = new ArrayList<>();
+        this.colores = new ArrayList<>();
+        this.modelos = new ArrayList<>();
         generarUsuarios();
         generarLineas();
+        generarColores();
+        generarModelos();
     }
     
     private void generarUsuarios(){
@@ -45,6 +51,25 @@ public final class Repositorio {
     public ArrayList<OrdenProduccion> getOrdenes() {
         return ordenes;
     }
+    
+    private void generarColores(){
+        colores.add(new Color(1,"Rojo"));
+        colores.add(new Color(2,"Verde"));
+    }
+
+    public ArrayList<Color> getColores() {
+        return colores;
+    }
+    
+    private void generarModelos(){
+        modelos.add(new Modelo(1, "A"));
+        modelos.add(new Modelo(2, "B"));
+    }
+
+    public ArrayList<Modelo> getModelos() {
+        return modelos;
+    }
+    
 
     public void setOrden(OrdenProduccion orden) {
         ordenes.add(orden);
