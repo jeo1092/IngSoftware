@@ -18,7 +18,7 @@ public class OrdenProduccion {
     private EstadoOrden estadoOrden;
     private final LineaProduccion lineaProduccion;
     private final ArrayList<PeriodoFuncionamiento> periodos;
-    
+ 
     public OrdenProduccion(int numeroOrden, Modelo modelo, Color color, LineaProduccion lineaProduccion) {
         this.numeroOrden = numeroOrden;
         this.modelo = modelo;
@@ -28,7 +28,7 @@ public class OrdenProduccion {
         this.periodos = new ArrayList<>();
         iniciarNuevoPeriodo();
     }
-    
+
     public final void iniciarNuevoPeriodo(){
         periodos.add(new PeriodoFuncionamiento(generarHorario()));
     }
@@ -48,6 +48,11 @@ public class OrdenProduccion {
 
     public void setEstadoOrden(EstadoOrden estadoOrden) {
         this.estadoOrden = estadoOrden;
+    }
+
+    @Override
+    public String toString() {
+        return "OrdenProduccion{" + "numeroOrden=" + numeroOrden + ", modelo=" + modelo + ", color=" + color + ", estadoOrden=" + estadoOrden + ", lineaProduccion=" + lineaProduccion + '}';
     }
     
     

@@ -6,8 +6,6 @@
 package vista;
 
 import controlador.Controlador;
-import static vista.VistaPrincipalLinea.BTN_ADMINISTRAROP;
-import static vista.VistaPrincipalLinea.BTN_CREAROP;
 
 /**
  *
@@ -31,7 +29,7 @@ public class VistaPrincipalCalidad extends javax.swing.JFrame {
     public void setControlador(Controlador control){
     jConfirmar.setActionCommand(BTN_CONFIRMAR);
     jConfirmar.addActionListener(control);
-    jDetalles.setActionCommand(BTN_ADMINISTRAROP);
+    jDetalles.setActionCommand(BTN_DETALLES);
     jDetalles.addActionListener(control);
             }
     /**
@@ -44,16 +42,17 @@ public class VistaPrincipalCalidad extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTablaOP = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jDetalles = new javax.swing.JButton();
         jConfirmar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jdetalleLinea = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTablaOP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -64,7 +63,7 @@ public class VistaPrincipalCalidad extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTablaOP);
 
         jLabel1.setText("Detalles");
 
@@ -72,9 +71,11 @@ public class VistaPrincipalCalidad extends javax.swing.JFrame {
 
         jConfirmar.setText("Confirmar");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        jdetalleLinea.setColumns(20);
+        jdetalleLinea.setRows(5);
+        jScrollPane2.setViewportView(jdetalleLinea);
+
+        jLabel2.setText("Asignacion de Linea de Produccion");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,17 +91,24 @@ public class VistaPrincipalCalidad extends javax.swing.JFrame {
                 .addGap(105, 105, 105)
                 .addComponent(jDetalles)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jConfirmar)
+                .addGap(70, 70, 70))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jConfirmar)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(198, 198, 198))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(31, 31, 31)))
-                .addGap(70, 70, 70))
+                        .addGap(110, 110, 110))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(20, 20, 20)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -125,9 +133,10 @@ public class VistaPrincipalCalidad extends javax.swing.JFrame {
     private javax.swing.JButton jConfirmar;
     private javax.swing.JButton jDetalles;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
+    public javax.swing.JTable jTablaOP;
+    private javax.swing.JTextArea jdetalleLinea;
     // End of variables declaration//GEN-END:variables
 }
