@@ -14,12 +14,14 @@ public class Usuario {
     private String nombre;
     private String email;
     private TipoUsuario tipo;
+    private EstadoUsuario estado;
     
     public Usuario(int idUsuario, String nombre,String email, TipoUsuario tipo){
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.email = email;
         this.tipo = tipo;
+        this.estado = EstadoUsuario.LIBRE;
     }
 
     public int getIdUsuario() {
@@ -53,5 +55,15 @@ public class Usuario {
     public void setTipo(TipoUsuario tipo) {
         this.tipo = tipo;
     }
+
+    public EstadoUsuario getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoUsuario estado) {
+        this.estado = estado;
+    }
+    
+    
      
 }

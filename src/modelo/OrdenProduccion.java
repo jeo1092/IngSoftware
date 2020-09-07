@@ -12,22 +12,27 @@ import java.util.ArrayList;
  * @author Jose
  */
 public class OrdenProduccion {
-    private final int numeroOrden;
-    private final Modelo modelo;
-    private final Color color;
+    private int numeroOrden;
+    private Modelo modelo;
+    private Color color;
     private EstadoOrden estadoOrden;
-    private final LineaProduccion lineaProduccion;
-    private final ArrayList<PeriodoFuncionamiento> periodos;
+    private LineaProduccion lineaProduccion;
+    private Usuario supervisorLinea;
+    private ArrayList<PeriodoFuncionamiento> periodos;
  
-    public OrdenProduccion(int numeroOrden, Modelo modelo, Color color, LineaProduccion lineaProduccion) {
-        this.numeroOrden = numeroOrden;
-        this.modelo = modelo;
-        this.color = color;
-        this.estadoOrden = EstadoOrden.PROCESO;
-        this.lineaProduccion = lineaProduccion;
-        this.periodos = new ArrayList<>();
-        iniciarNuevoPeriodo();
+    public OrdenProduccion(){   
+       
     }
+    
+//    public OrdenProduccion(int numeroOrden, Modelo modelo, Color color, LineaProduccion lineaProduccion) {
+//        this.numeroOrden = numeroOrden;
+//        this.modelo = modelo;
+//        this.color = color;
+//        this.estadoOrden = EstadoOrden.PROCESO;
+//        this.lineaProduccion = lineaProduccion;
+//        this.periodos = new ArrayList<>();
+//        iniciarNuevoPeriodo();
+//    }
 
     public final void iniciarNuevoPeriodo(){
         periodos.add(new PeriodoFuncionamiento(generarHorario()));
@@ -50,6 +55,54 @@ public class OrdenProduccion {
         this.estadoOrden = estadoOrden;
     }
 
+    public int getNumeroOrden() {
+        return numeroOrden;
+    }
+
+    public void setNumeroOrden(int numeroOrden) {
+        this.numeroOrden = numeroOrden;
+    }
+
+    public Modelo getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(Modelo modelo) {
+        this.modelo = modelo;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public LineaProduccion getLineaProduccion() {
+        return lineaProduccion;
+    }
+
+    public void setLineaProduccion(LineaProduccion lineaProduccion) {
+        this.lineaProduccion = lineaProduccion;
+    }
+
+    public Usuario getSupervisorLinea() {
+        return supervisorLinea;
+    }
+
+    public void setSupervisorLinea(Usuario supervisorLinea) {
+        this.supervisorLinea = supervisorLinea;
+    }
+
+    public ArrayList<PeriodoFuncionamiento> getPeriodos() {
+        return periodos;
+    }
+
+    public void setPeriodos(ArrayList<PeriodoFuncionamiento> periodos) {
+        this.periodos = periodos;
+    }
+    
     @Override
     public String toString() {
         return "OrdenProduccion{" + "numeroOrden=" + numeroOrden + ", modelo=" + modelo + ", color=" + color + ", estadoOrden=" + estadoOrden + ", lineaProduccion=" + lineaProduccion + '}';
