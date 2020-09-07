@@ -6,6 +6,7 @@
 package vista;
 
 import controlador.Controlador;
+import java.util.ArrayList;
 import modelo.*;
 /**
  *
@@ -29,10 +30,10 @@ public class VistacrearOP extends javax.swing.JFrame {
         jOrdenProd.setActionCommand(BTN_CREAR_ORDENP);
         jOrdenProd.addActionListener(control);
     }
-    public void cargarDatosLinea(Repositorio repo){
-    for(int i=0;repo.getLineas().size()>i;i++){
+    public void cargarDatosLinea(ArrayList<Integer> linea, ArrayList <String>color,ArrayList <String>modelo){
+    /*for(int i=0;repo.getLineas().size()>i;i++){
        jComboLinea.addItem(""+repo.getLineas().get(i).getNumeroLinea());
-                                                }
+                                                }*/
     }
     public void cargarDatoscolor(){}
     public void cargarDatosModelo(){}
