@@ -14,10 +14,12 @@ import java.util.ArrayList;
 public final class Repositorio {
     private final ArrayList<Usuario> usuarios;
     private final ArrayList<LineaProduccion> lineas;
+    private ArrayList<OrdenProduccion> ordenes;
 
     public Repositorio(){
         this.usuarios = new ArrayList<>();
         this.lineas = new ArrayList<>();
+        this.ordenes = new ArrayList<>();
         generarUsuarios();
         generarLineas();
     }
@@ -39,5 +41,15 @@ public final class Repositorio {
     public ArrayList<LineaProduccion> getLineas() {
         return lineas;
     }
+
+    public ArrayList<OrdenProduccion> getOrdenes() {
+        return ordenes;
+    }
+
+    public void setOrden(OrdenProduccion orden) {
+        ordenes.add(orden);
+    }
+    
+    
     
 }

@@ -6,8 +6,6 @@
 package modelo;
 
 import controlador.Controlador;
-import java.util.ArrayList;
-import vista.*;
 /**
  *
  * @author Jose

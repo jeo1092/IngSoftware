@@ -11,61 +11,68 @@ import modelo.*;
 import vista.*;
 
 /**
- *
- * @author Jose
- */
+*
+* @author Jose
+*/
 public class Controlador implements ActionListener{
     public VistaAutenticacion VistaAutent;
     public VistaPrincipalLinea VistaPL;
     public VistaPrincipalCalidad VistaCalidad;
     public VistacrearOP vistaCrearOP;
     public Repositorio repo;
-    public TipoUsuario tipo;
+    public TipoUsuario tipo; // no es necesario crear una variable tipo
     public OrdenProduccion orden;
-    
-     public Controlador() {
-         
-       VistaAutent= new VistaAutenticacion();
-       VistaPL= new VistaPrincipalLinea();
-       VistaCalidad= new VistaPrincipalCalidad();
-       vistaCrearOP= new VistacrearOP();
-       repo= new Repositorio();
-         }
-     
-           public void ejecutarAutenticacion(){
-             VistaAutent.setControlador(this);
-             VistaAutent.ejecutarAutenticacion();
-         
-         }
-            
-        public void actionPerformed (ActionEvent e){
-       if(e.getActionCommand().equals(VistaAutent.BTN_ACEPTAR)){
- 
-    if(VistaAutent.getUsuario().equals(repo.getUsuarios().get(0).getNombre()) && repo.getUsuarios().get(0).getTipo().SUPERVISORLINEA==tipo.SUPERVISORLINEA){
-      VistaPL.setControlador(this);
-      VistaPL.ejecutar();
-        }else
-        {
-        if(VistaAutent.getUsuario().equals(repo.getUsuarios().get(1).getNombre()) && repo.getUsuarios().get(1).getTipo().SUPERVISORCALIDAD==tipo.SUPERVISORCALIDAD)
-        {
-        VistaCalidad.setControlador(this);
-        VistaCalidad.ejecutar();    
-        }
-             }
-   
-                                                               }
-       if(e.getActionCommand().equals(VistaPL.BTN_CREAROP)){         
-           vistaCrearOP.setControlador(this);
-           vistaCrearOP.ejecutar();
-           vistaCrearOP.cargarDatosLinea(repo);
 
-       }
-       if(e.getActionCommand().equals(vistaCrearOP.BTN_CREAR_ORDENP)){
-       vistaCrearOP.agregarDatos();
- //orden= new OrdenProduccion(vistaCrearOP.getNumeroOP(),vistaCrearOP.getModelo(),vistaCrearOP.getColor(),vistaCrearOP.getNumLinea());                               
-                                            
-       }
-                                                            }
-       
-       
-                                                    }
+    public Controlador() {
+
+        VistaAutent= new VistaAutenticacion();
+        VistaPL= new VistaPrincipalLinea();
+        VistaCalidad= new VistaPrincipalCalidad();
+        vistaCrearOP= new VistacrearOP();
+        repo= new Repositorio();
+    }
+
+    public void ejecutarAutenticacion(){
+        VistaAutent.setControlador(this);
+        VistaAutent.ejecutarAutenticacion();
+
+    }
+
+    public void actionPerformed (ActionEvent e){
+        if(e.getActionCommand().equals(VistaAutent.BTN_ACEPTAR)){
+
+            if(VistaAutent.getUsuario().equals(repo.getUsuarios().get(0).getNombre()) && repo.getUsuarios().get(0).getTipo().SUPERVISORLINEA==tipo.SUPERVISORLINEA){
+                VistaPL.setControlador(this);
+                VistaPL.ejecutar();
+            }else
+            {
+                if(VistaAutent.getUsuario().equals(repo.getUsuarios().get(1).getNombre()) && repo.getUsuarios().get(1).getTipo().SUPERVISORCALIDAD==tipo.SUPERVISORCALIDAD)
+                {
+                    VistaCalidad.setControlador(this);
+                    VistaCalidad.ejecutar();    
+                }
+            }
+
+        }
+        if(e.getActionCommand().equals(VistaPL.BTN_CREAROP)){         
+            vistaCrearOP.setControlador(this);
+            vistaCrearOP.ejecutar();
+            vistaCrearOP.cargarDatosLinea(repo);//no poner repositorio como parametro, seria un array
+        }
+        if(e.getActionCommand().equals(vistaCrearOP.BTN_CREAR_ORDENP)){
+            //vistaCrearOP.agregarDatos();
+            //orden= new OrdenProduccion(vistaCrearOP.getNumeroOP(),vistaCrearOP.getModelo(),vistaCrearOP.getColor(),vistaCrearOP.getNumLinea());
+            //repo.setOrden(new OrdenProduccion(parametros));
+            ArrayList<String []> lineas = new ArrayList<>();
+            String [] valores = {"hola", String.valueOf(1)};
+            String prueba = valores [0];
+            System.out.print(prueba);
+            lineas.add(valores);
+            
+            for(String [] variable : lineas){
+                String uno = variable[0];
+                String dos = variable[1];
+            }
+        }
+    }
+}
