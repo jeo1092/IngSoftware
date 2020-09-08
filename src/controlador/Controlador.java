@@ -22,6 +22,7 @@ public class Controlador implements ActionListener{
     public VistaPrincipalIC vistaPrincipalCalidad;
     public VistacrearOP vistaCrearOP;
     public VistaAdministrarOP vistaAdmOP;
+    public VistaRegistrarDefecto vistaRegistrar;
     public Repositorio repo;
     public TipoUsuario tipo; // no es necesario crear una variable tipo
     public Usuario usuarioCalidad;
@@ -90,7 +91,7 @@ public class Controlador implements ActionListener{
             }  
         }
         if(e.getActionCommand().equals(vistaCrearOP.BTN_CARGAR_ORDENP)){
-            orden.setNumeroOrden(0);
+            orden.setNumeroOrden(vistaCrearOP.getNumeroOP());
             orden.setColor(repo.obtenerColor(vistaCrearOP.getColor()));
             orden.setModelo(repo.obtenerModelo(vistaCrearOP.getModelo()));
             orden.setLineaProduccion(repo.obtenerLinea(vistaCrearOP.getNumLinea()));
@@ -118,6 +119,7 @@ public class Controlador implements ActionListener{
                 orden.setEstadoOrden(EstadoOrden.PROCESO);
             }else{
                 orden.setEstadoOrden(EstadoOrden.FINALIZADA);
+                orden.getLineaProduccion().setEstadoLinea(EstadoLinea.LIBRE);
             }
             vistaAdmOP.setOrdenProduccion(orden.getLineaProduccion().getNumeroLinea(), orden.getModelo().getDescripcion(), orden.getColor().getDescripcion(), orden.getSupervisorLinea().getNombre(), orden.getEstadoOrden().name());
         }
@@ -135,6 +137,47 @@ public class Controlador implements ActionListener{
         }
         
         if(e.getActionCommand().equals(VistaCalidad.BTN_CONFIRMAR)){
+            repo.obtenerOPporNumero(VistaCalidad.getOrden()).obtenerUltimoPeriodo().setUsuario(usuarioCalidad);
+            usuarioCalidad.setEstado(EstadoUsuario.ASIGNADO);
+        }
+        
+        if(e.getActionCommand().equals(vistaPrincipalCalidad.BTN_REALIZAR_INSPECCION)){
+            vistaRegistrar = new VistaRegistrarDefecto();
+            vistaRegistrar.setControlador(this);
+            vistaRegistrar.ejecutar();
+            vistaRegistrar.setEstadoOrden(repo.obtenerOPporSupCalidad(usuarioCalidad).getEstadoOrden().name());
+        }
+        
+        if(e.getActionCommand().equals(vistaRegistrar.BTN_APROBAR)){
+            Inspeccion inspeccion = new Inspeccion();
+            inspeccion.setCalidad(Calidad.PRIMERA);
+            repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspeccion);
+        }
+        
+        if(e.getActionCommand().equals(vistaRegistrar.BTN_REGISTRAR_REPROCESADOS)){
+            Inspeccion inspeccion = new Inspeccion();
+            Pie pie;
+                            System.out.print(vistaRegistrar.getDefectosRep().size());
+            for(String [] defecto: vistaRegistrar.getDefectosRep()){
+                int codigo = Integer.parseInt(defecto[0]);
+                if(defecto[1].equals(Pie.DERECHO.name())){
+                    pie = Pie.DERECHO;
+                }else{
+                    pie = Pie.IZQUIERDO;
+                }
+                inspeccion.agregarDefecto(repo.buscarDefectosPorCodigo(codigo));
+                inspeccion.setPie(pie);
+                System.out.print(inspeccion.getPie().name());
+            }
+            
+            repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspeccion);         
+//            System.out.print(repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().getInspecciones().size());
+//           for(Inspeccion i: repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().getInspecciones()){
+//                  System.out.print(i.getPie().name());
+//                for(Defecto d: i.getDefectos()){
+//                    System.out.print(d.getCodigo());
+//                }
+//            }
             
         }
     }

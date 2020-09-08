@@ -22,8 +22,8 @@ public class VistaRegistrarDefecto extends javax.swing.JFrame {
     public static final String BTN_REGISTRAR_SEPARADOS = "registrar par de calzado para separar";
     public static final String BTN_HERMANAR = "comenzar a hermanar los calzados separados";
     
-    ArrayList<String []> defectosRep = new ArrayList<>();
-    ArrayList<String []> defectosSep = new ArrayList<>();
+    private ArrayList<String []> defectosRep = new ArrayList<>();
+    private ArrayList<String []> defectosSep = new ArrayList<>();
 
     /**
      * Creates new form VistaRegistrarDefecto

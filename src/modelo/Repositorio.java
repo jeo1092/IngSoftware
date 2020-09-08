@@ -17,6 +17,7 @@ public final class Repositorio {
     private ArrayList<OrdenProduccion> ordenes;
     private ArrayList<Color> colores;
     private ArrayList<Modelo> modelos;
+    private ArrayList<Defecto> defectos;
 
     public Repositorio(){
         this.usuarios = new ArrayList<>();
@@ -24,10 +25,12 @@ public final class Repositorio {
         this.ordenes = new ArrayList<>();
         this.colores = new ArrayList<>();
         this.modelos = new ArrayList<>();
+        this.defectos = new ArrayList<>();
         generarUsuarios();
         generarLineas();
         generarColores();
         generarModelos();
+        generarDefectosReproceso();
     }
     
     private void generarUsuarios(){
@@ -71,6 +74,16 @@ public final class Repositorio {
         return modelos;
     }
     
+    private void generarDefectosReproceso(){
+        defectos.add(new Defecto(1));
+        defectos.add(new Defecto(2));
+        defectos.add(new Defecto(3));
+        defectos.add(new Defecto(4));
+        defectos.add(new Defecto(11));
+        defectos.add(new Defecto(22));
+        defectos.add(new Defecto(33));
+        defectos.add(new Defecto(44));
+    }
 
     public void agregarOrden(OrdenProduccion orden) {
         ordenes.add(orden);
@@ -117,11 +130,43 @@ public final class Repositorio {
         return resultado;
     }
     
+    public OrdenProduccion obtenerOPporSupCalidad(Usuario supervisorCalidad){
+        OrdenProduccion resultado = null;
+        for(OrdenProduccion op: ordenes){
+            if(op.obtenerUltimoPeriodo().getUsuario().equals(supervisorCalidad)){
+                resultado = op;
+                break;
+            }
+        }
+        return resultado;
+    }
+    
     public ArrayList<OrdenProduccion> obtenerOrdenesDisponibles(){
         ArrayList<OrdenProduccion> resultado = new ArrayList<>();
         for(OrdenProduccion op : ordenes){
             if(op.getEstadoOrden() == EstadoOrden.PROCESO && op.obtenerUltimoPeriodo().getUsuario() == null){
                 resultado.add(op);
+            }
+        }
+        return resultado;
+    }
+    
+    public OrdenProduccion obtenerOPporNumero(int n){
+        OrdenProduccion resultado = null;
+        for(OrdenProduccion op: ordenes){
+            if(op.getNumeroOrden() == n){
+                resultado = op;
+                break;
+            }
+        }
+        return resultado;
+    }
+    
+    public Defecto buscarDefectosPorCodigo(int codigo){
+        Defecto resultado= null;
+        for(Defecto defecto: defectos){
+            if(defecto.getCodigo()==codigo){
+                resultado = defecto;
             }
         }
         return resultado;

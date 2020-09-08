@@ -17,6 +17,7 @@ public class Inspeccion {
     private ArrayList<Defecto> defectos;
     private Calidad calidad;
     private int horario;
+    private Pie pie;
 
     public Inspeccion() {
         this.defectos = new ArrayList<>();
@@ -47,5 +48,15 @@ public class Inspeccion {
     public int getHorario() {
         return horario;
     }
+
+    public Pie getPie() {
+        return pie;
+    }
+
+    public void setPie(Pie pie) {
+        this.pie = pie;
+    }
+    
+    
   
 }
