@@ -14,14 +14,15 @@ public class Defecto {
     private Pie pie;
     private TipoDefecto tipoDefecto;
     
-    public Defecto(int codigo){
+    public Defecto(int codigo, TipoDefecto tipoDefecto){
         this.codigo = codigo;
-    }
-
-    public Defecto(Pie pie, TipoDefecto tipoDefecto) {
-        this.pie = pie;
         this.tipoDefecto = tipoDefecto;
     }
+
+//    public Defecto(Pie pie, TipoDefecto tipoDefecto) {
+//        this.pie = pie;
+//        this.tipoDefecto = tipoDefecto;
+//    }
 
     public int getCodigo() {
         return codigo;
