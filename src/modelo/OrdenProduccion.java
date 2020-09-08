@@ -6,6 +6,8 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -20,19 +22,10 @@ public class OrdenProduccion {
     private Usuario supervisorLinea;
     private ArrayList<PeriodoFuncionamiento> periodos;
  
-    public OrdenProduccion(){   
-       
+    public OrdenProduccion(){
+       this.periodos = new ArrayList<>();
+       iniciarNuevoPeriodo();
     }
-    
-//    public OrdenProduccion(int numeroOrden, Modelo modelo, Color color, LineaProduccion lineaProduccion) {
-//        this.numeroOrden = numeroOrden;
-//        this.modelo = modelo;
-//        this.color = color;
-//        this.estadoOrden = EstadoOrden.PROCESO;
-//        this.lineaProduccion = lineaProduccion;
-//        this.periodos = new ArrayList<>();
-//        iniciarNuevoPeriodo();
-//    }
 
     public final void iniciarNuevoPeriodo(){
         periodos.add(new PeriodoFuncionamiento(generarHorario()));
@@ -44,7 +37,8 @@ public class OrdenProduccion {
     }
     
     private int generarHorario(){
-        return 1;
+        Calendar c = new GregorianCalendar();
+        return (int)c.get(Calendar.HOUR_OF_DAY);
     }
 
     public EstadoOrden getEstadoOrden() {
@@ -85,6 +79,7 @@ public class OrdenProduccion {
 
     public void setLineaProduccion(LineaProduccion lineaProduccion) {
         this.lineaProduccion = lineaProduccion;
+        lineaProduccion.setEstadoLinea(EstadoLinea.OCUPADA);
     }
 
     public Usuario getSupervisorLinea() {

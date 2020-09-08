@@ -14,7 +14,7 @@ import modelo.*;
  */
 public class VistacrearOP extends javax.swing.JFrame {
     
-    public static final String BTN_CREAR_ORDENP= "crear una orden de produccion";
+    public static final String BTN_CARGAR_ORDENP= "crear una orden de produccion";
     public static final String BTN_CONFIRMAROP= "confirmar una orden de produccion"; 
     /**
      * Creates new form crearOP
@@ -33,8 +33,10 @@ public class VistacrearOP extends javax.swing.JFrame {
     }
     
     public void setControlador(Controlador control){
-        jOrdenProd.setActionCommand(BTN_CREAR_ORDENP);
+        jOrdenProd.setActionCommand(BTN_CARGAR_ORDENP);
         jOrdenProd.addActionListener(control);
+        jButton2.setActionCommand(BTN_CONFIRMAROP);
+        jButton2.addActionListener(control);
     }
     
     public void cargarDatosLinea(ArrayList<Integer> linea, ArrayList <String>color,ArrayList <String>modelo){

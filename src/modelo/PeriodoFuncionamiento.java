@@ -18,8 +18,8 @@ public class PeriodoFuncionamiento {
     private ArrayList<Inspeccion> inspecciones;
 
     public PeriodoFuncionamiento(int hInicio) {
-        this.hInicio = hInicio;
-        this.inspecciones = new ArrayList<>();
+//        this.hInicio = hInicio;
+//        this.inspecciones = new ArrayList<>();
     }
     
     public void agregarInspeccion(Inspeccion inspeccion){

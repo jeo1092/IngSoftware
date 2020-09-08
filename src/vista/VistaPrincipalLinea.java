@@ -30,7 +30,7 @@ public class VistaPrincipalLinea extends javax.swing.JFrame {
     btnCREAROP.addActionListener(control);
     btnADMOP.setActionCommand(BTN_ADMINISTRAROP);
     btnADMOP.addActionListener(control);
-            }
+    }
    
     /**
      * This method is called from within the constructor to initialize the form.
