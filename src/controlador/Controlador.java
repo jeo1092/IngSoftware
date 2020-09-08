@@ -160,9 +160,9 @@ public class Controlador implements ActionListener{
                 inspI.setPie(Pie.IZQUIERDO);
                 for(String d: vistaRegistrar.getDefectosIzquierdo()){
                     Defecto defecto = repo.buscarDefectosPorCodigo(Integer.parseInt(d));
-                    inspI.agregarDefecto(defecto);
-                    repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspI);
+                    inspI.agregarDefecto(defecto); 
                 }
+                repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspI);
             }
             if(vistaRegistrar.getDefectosDerecho().size() != 0){
                 Inspeccion inspD = new Inspeccion();
