@@ -20,50 +20,58 @@ public class VistacrearOP extends javax.swing.JFrame {
      * Creates new form crearOP
      */
     public VistacrearOP() {
-    initComponents();
+        initComponents();
     }
+    
     public void ejecutar(){
-    this.setVisible(true);
-    this.setLocationRelativeTo(null);
-    jComboLinea.removeAllItems();
-    jComboColor.removeAllItems();
-    jComboModelo.removeAllItems();
-    jDatosOP.removeAll();
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        jComboLinea.removeAllItems();
+        jComboColor.removeAllItems();
+        jComboModelo.removeAllItems();
+        jDatosOP.removeAll();
     }
+    
     public void setControlador(Controlador control){
         jOrdenProd.setActionCommand(BTN_CREAR_ORDENP);
         jOrdenProd.addActionListener(control);
     }
+    
     public void cargarDatosLinea(ArrayList<Integer> linea, ArrayList <String>color,ArrayList <String>modelo){
     
-     for(int i=0;linea.size()>i;i++){
-     jComboLinea.addItem(""+linea.get(i));
-                                                }
-    jComboLinea.addItem("");
-    for(int i=0;color.size()>i;i++){
-        jComboColor.addItem(color.get(i));
+        for(int i=0;linea.size()>i;i++){
+        jComboLinea.addItem(""+linea.get(i));
         }
-    for(int i=0; modelo.size()>i;i++){
-    jComboModelo.addItem(modelo.get(i));
-            }
-    
+        
+        jComboLinea.addItem("");
+        for(int i=0;color.size()>i;i++){
+            jComboColor.addItem(color.get(i));
+        }
+        
+        for(int i=0; modelo.size()>i;i++){
+        jComboModelo.addItem(modelo.get(i));
+        }
     }
-        public int getNumeroOP(){
+    
+    public int getNumeroOP(){
         int numero=Integer.parseInt(jTextField1.getText());
         return numero;
-        }
-        public int getNumLinea(){
-         int numLinea=Integer.parseInt(jComboLinea.getSelectedItem().toString());
-         return numLinea;
-        }
-        public String getModelo(){
+    }
+    
+    public int getNumLinea(){
+        int numLinea=Integer.parseInt(jComboLinea.getSelectedItem().toString());
+        return numLinea;
+    }
+    
+    public String getModelo(){
         String numModelo= ((String)jComboModelo.getSelectedItem());
         return numModelo;
-        }
-        public String getColor(){
+    }
+    
+    public String getColor(){
         String DescripcionColor= ((String)jComboColor.getSelectedItem());
         return DescripcionColor;
-        }
+    }
        
     /**
      * This method is called from within the constructor to initialize the form.
