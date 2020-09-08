@@ -56,7 +56,4 @@ public class Inspeccion {
     public void setPie(Pie pie) {
         this.pie = pie;
     }
-    
-    
-  
 }

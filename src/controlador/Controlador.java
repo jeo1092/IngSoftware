@@ -155,30 +155,24 @@ public class Controlador implements ActionListener{
         }
         
         if(e.getActionCommand().equals(vistaRegistrar.BTN_REGISTRAR_REPROCESADOS)){
-            Inspeccion inspeccion = new Inspeccion();
-            Pie pie;
-                            System.out.print(vistaRegistrar.getDefectosRep().size());
-            for(String [] defecto: vistaRegistrar.getDefectosRep()){
-                int codigo = Integer.parseInt(defecto[0]);
-                if(defecto[1].equals(Pie.DERECHO.name())){
-                    pie = Pie.DERECHO;
-                }else{
-                    pie = Pie.IZQUIERDO;
+            if(vistaRegistrar.getDefectosIzquierdo().size() != 0){
+                Inspeccion inspI = new Inspeccion();
+                inspI.setPie(Pie.IZQUIERDO);
+                for(String d: vistaRegistrar.getDefectosIzquierdo()){
+                    Defecto defecto = repo.buscarDefectosPorCodigo(Integer.parseInt(d));
+                    inspI.agregarDefecto(defecto);
+                    repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspI);
                 }
-                inspeccion.agregarDefecto(repo.buscarDefectosPorCodigo(codigo));
-                inspeccion.setPie(pie);
-                System.out.print(inspeccion.getPie().name());
             }
-            
-            repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspeccion);         
-//            System.out.print(repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().getInspecciones().size());
-//           for(Inspeccion i: repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().getInspecciones()){
-//                  System.out.print(i.getPie().name());
-//                for(Defecto d: i.getDefectos()){
-//                    System.out.print(d.getCodigo());
-//                }
-//            }
-            
-        }
+            if(vistaRegistrar.getDefectosDerecho().size() != 0){
+                Inspeccion inspD = new Inspeccion();
+                inspD.setPie(Pie.DERECHO);
+                for(String d: vistaRegistrar.getDefectosDerecho()){
+                    Defecto defecto = repo.buscarDefectosPorCodigo(Integer.parseInt(d));
+                    inspD.agregarDefecto(defecto);
+                }
+                repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspD);
+            }                                    
+        }                             
     }
 }
