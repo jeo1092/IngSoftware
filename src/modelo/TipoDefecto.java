@@ -10,5 +10,5 @@ package modelo;
  * @author Jose
  */
 public enum TipoDefecto {
-    
+    REPROCESO, SEPARACION
 }
