@@ -6,6 +6,8 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -26,7 +28,8 @@ public class Inspeccion {
     }
     
     private int generarHorario(){
-        return 1;
+        Calendar c = new GregorianCalendar();
+        return c.get(Calendar.HOUR_OF_DAY);
     }
 
     public ArrayList<Defecto> getDefectos() {

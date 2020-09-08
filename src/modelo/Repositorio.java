@@ -32,6 +32,7 @@ public final class Repositorio {
     
     private void generarUsuarios(){
         usuarios.add(new Usuario(1,"jose","jose@gmail.com", TipoUsuario.SUPERVISORLINEA));
+        usuarios.add(new Usuario(1,"pedro","pedor@gmail.com", TipoUsuario.SUPERVISORLINEA));
         usuarios.add(new Usuario(2,"daniel","daniel@gmail.com", TipoUsuario.SUPERVISORCALIDAD));
     }
 
@@ -71,14 +72,14 @@ public final class Repositorio {
     }
     
 
-    public void setOrden(OrdenProduccion orden) {
+    public void agregarOrden(OrdenProduccion orden) {
         ordenes.add(orden);
     }
     
     public Color obtenerColor(String a){
         Color valor = null;
         for(Color c: colores){
-            if(c.getDescripcion()==a){
+            if(c.getDescripcion().equals(a)){
                 valor = c;
             }
         }
@@ -88,7 +89,7 @@ public final class Repositorio {
     public Modelo obtenerModelo(String a){
         Modelo valor = null;
         for(Modelo m: modelos){
-            if(m.getDescripcion()==a){
+            if(m.getDescripcion().equals(a)){
                 valor = m;
             }
         }
@@ -103,5 +104,16 @@ public final class Repositorio {
             }
         }
         return valor;
+    }
+    
+    public OrdenProduccion obtenerOPporSupLinea(Usuario supervisorLinea){
+        OrdenProduccion resultado = null;
+        for(OrdenProduccion op: ordenes){
+            if(op.getSupervisorLinea().equals(supervisorLinea) && (op.getEstadoOrden().equals(EstadoOrden.PROCESO) || op.getEstadoOrden().equals(EstadoOrden.PAUSA))){
+                resultado = op;
+                break;
+            }
+        }
+        return resultado;
     }
 }
