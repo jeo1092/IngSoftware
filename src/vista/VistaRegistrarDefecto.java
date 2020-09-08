@@ -58,7 +58,7 @@ public class VistaRegistrarDefecto extends javax.swing.JFrame {
         jTextField1.setText(estado);
     }
     
-    public void actionPerformed(ActionEvent e){
+    public void seleccionDefectos(){
         
         if(jDRI1.isSelected()){
             String [] defecto = {"1", "IZQUIERDO"};
@@ -142,10 +142,12 @@ public class VistaRegistrarDefecto extends javax.swing.JFrame {
     }
 
     public ArrayList<String []> getDefectosRep() {
+        seleccionDefectos();
         return defectosRep;
     }
 
     public ArrayList<String []> getDefectosSep() {
+        seleccionDefectos();
         return defectosSep;
     }
     
