@@ -5,19 +5,31 @@
  */
 package vista;
 
+import controlador.Controlador;
+
 /**
  *
  * @author Leonel
  */
 public class VistaPrincipalIC extends javax.swing.JFrame {
     public static final String BTN_ASIGNAR_ORDEN="opcion para asignar una orden a un supervisor de calidad";
-    //public static
-
+    public static final String BTN_REALIZAR_INSPECCION="opcion para asignar una orden a un supervisor de calidad";
+ 
     /**
      * Creates new form VistaPrincipalIC
      */
     public VistaPrincipalIC() {
         initComponents();
+    }
+    public void ejecutar(){
+    this.setVisible(true);
+    this.setLocationRelativeTo(null);
+        }
+    public void setControlador(Controlador control){
+    btnAsignarOrden.setActionCommand(BTN_ASIGNAR_ORDEN);
+    btnAsignarOrden.addActionListener(control);
+    btnRealizarInsp.setActionCommand(BTN_REALIZAR_INSPECCION);
+    btnRealizarInsp.addActionListener(control);
     }
 
     /**
