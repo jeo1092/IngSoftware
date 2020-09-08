@@ -22,8 +22,8 @@ public class VistaRegistrarDefecto extends javax.swing.JFrame {
     public static final String BTN_REGISTRAR_SEPARADOS = "registrar par de calzado para separar";
     public static final String BTN_HERMANAR = "comenzar a hermanar los calzados separados";
     
-    ArrayList<String> defectosRep = new ArrayList<>();
-    ArrayList<String> defectosSep = new ArrayList<>();
+    ArrayList<String []> defectosRep = new ArrayList<>();
+    ArrayList<String []> defectosSep = new ArrayList<>();
 
     /**
      * Creates new form VistaRegistrarDefecto
@@ -61,75 +61,91 @@ public class VistaRegistrarDefecto extends javax.swing.JFrame {
     public void actionPerformed(ActionEvent e){
         
         if(jDRI1.isSelected()){
-            defectosRep.add("1 IZQUIERDO");
+            String [] defecto = {"1", "IZQUIERDO"};
+            defectosRep.add(defecto);
         }
         
         if(jDRI2.isSelected()){
-            defectosRep.add("2 IZQUIERDO");
+            String [] defecto = {"2", "IZQUIERDO"};
+            defectosRep.add(defecto);;
         }
         
         if(jDRI3.isSelected()){
-            defectosRep.add("3 IZQUIERDO");
+            String [] defecto = {"3", "IZQUIERDO"};
+            defectosRep.add(defecto);
         }
         
         if(jDRI4.isSelected()){
-            defectosRep.add("4 IZQUIERDO");
+            String [] defecto = {"4", "IZQUIERDO"};
+            defectosRep.add(defecto);
         }
         
         if(jDRD1.isSelected()){
-            defectosRep.add("1 DERECHO");
+            String [] defecto = {"1", "DERECHO"};
+            defectosRep.add(defecto);
         }
         
         if(jDRD2.isSelected()){
-            defectosRep.add("2 DERECHO");
+            String [] defecto = {"2", "DERECHO"};
+            defectosRep.add(defecto);
         }
         
         if(jDRD3.isSelected()){
-            defectosRep.add("3 DERECHO");
+            String [] defecto = {"3", "DERECHO"};
+            defectosRep.add(defecto);
         }
         
         if(jDRD4.isSelected()){
-            defectosRep.add("4 DERECHO");
+            String [] defecto = {"4", "DERECHO"};
+            defectosRep.add(defecto);
         }
         
         if(jDSI1.isSelected()){
-            defectosSep.add("11 IZQUIERDO");
+            String [] defecto = {"11", "IZQUIERDO"};
+            defectosRep.add(defecto);
         }
         
         if(jDSI2.isSelected()){
-            defectosSep.add("22 IZQUIERDO");
+            String [] defecto = {"22", "IZQUIERDO"};
+            defectosRep.add(defecto);
         }
         
         if(jDSI3.isSelected()){
-            defectosSep.add("33 IZQUIERDO");
+           String [] defecto = {"33", "IZQUIERDO"};
+            defectosRep.add(defecto);
         }
         
         if(jDSI4.isSelected()){
-            defectosSep.add("44 IZQUIERDO");
+            String [] defecto = {"44", "IZQUIERDO"};
+            defectosRep.add(defecto);
         }
         
         if(jDSD1.isSelected()){
-            defectosSep.add("11 DERECHO");
+            String [] defecto = {"11", "DERECHO"};
+            defectosRep.add(defecto);
         }
         
         if(jDSD2.isSelected()){
-            defectosSep.add("22 DERECHO");
+            String [] defecto = {"22", "DERECHO"};
+            defectosRep.add(defecto);
         }
         
         if(jDSD3.isSelected()){
-            defectosSep.add("33 DERECHO");
+            String [] defecto = {"33", "DERECHO"};
+            defectosRep.add(defecto);
         }
         
         if(jDSD4.isSelected()){
-            defectosSep.add("44 DERECHO");
+            String [] defecto = {"44", "DERECHO"};
+            defectosRep.add(defecto);
         }
     }
 
-    public ArrayList<String> getDefectosRep() {
+    public ArrayList<String []> getDefectosRep() {
         return defectosRep;
     }
 
-    public ArrayList<String> getDefectosSep() {
+    public ArrayList<String []> getDefectosSep() {
         return defectosSep;
     }
     
