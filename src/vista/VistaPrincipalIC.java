@@ -13,7 +13,7 @@ import controlador.Controlador;
  */
 public class VistaPrincipalIC extends javax.swing.JFrame {
     public static final String BTN_ASIGNAR_ORDEN="opcion para asignar una orden a un supervisor de calidad";
-    public static final String BTN_REALIZAR_INSPECCION="opcion para asignar una orden a un supervisor de calidad";
+    public static final String BTN_REALIZAR_INSPECCION="opcion para asignar una orden a un usuario";
  
     /**
      * Creates new form VistaPrincipalIC
@@ -70,14 +70,14 @@ public class VistaPrincipalIC extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(107, 107, 107)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAsignarOrden)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnRealizarInsp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel1)
-                            .addComponent(btnRealizarInsp, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnAsignarOrden, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(152, 152, 152)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
