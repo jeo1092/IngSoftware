@@ -6,6 +6,8 @@
 package vista;
 
 import controlador.Controlador;
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,6 +21,9 @@ public class VistaRegistrarDefecto extends javax.swing.JFrame {
     public static final String BTN_REGISTRAR_REPROCESADOS = "registrar par de calzado para reprocesar";
     public static final String BTN_REGISTRAR_SEPARADOS = "registrar par de calzado para separar";
     public static final String BTN_HERMANAR = "comenzar a hermanar los calzados separados";
+    
+    ArrayList<String> defectosRep = new ArrayList<>();
+    ArrayList<String> defectosSep = new ArrayList<>();
 
     /**
      * Creates new form VistaRegistrarDefecto
@@ -48,6 +53,83 @@ public class VistaRegistrarDefecto extends javax.swing.JFrame {
         jHermanar.setActionCommand(BTN_HERMANAR);
         jHermanar.addActionListener(control);
     }
+    
+    public void actionPerformed(ActionEvent e){
+        
+        if(jDRI1.isSelected()){
+            defectosRep.add("1 IZQUIERDO");
+        }
+        
+        if(jDRI2.isSelected()){
+            defectosRep.add("2 IZQUIERDO");
+        }
+        
+        if(jDRI3.isSelected()){
+            defectosRep.add("3 IZQUIERDO");
+        }
+        
+        if(jDRI4.isSelected()){
+            defectosRep.add("4 IZQUIERDO");
+        }
+        
+        if(jDRD1.isSelected()){
+            defectosRep.add("1 DERECHO");
+        }
+        
+        if(jDRD2.isSelected()){
+            defectosRep.add("2 DERECHO");
+        }
+        
+        if(jDRD3.isSelected()){
+            defectosRep.add("3 DERECHO");
+        }
+        
+        if(jDRD4.isSelected()){
+            defectosRep.add("4 DERECHO");
+        }
+        
+        if(jDSI1.isSelected()){
+            defectosSep.add("11 IZQUIERDO");
+        }
+        
+        if(jDSI2.isSelected()){
+            defectosSep.add("22 IZQUIERDO");
+        }
+        
+        if(jDSI3.isSelected()){
+            defectosSep.add("33 IZQUIERDO");
+        }
+        
+        if(jDSI4.isSelected()){
+            defectosSep.add("44 IZQUIERDO");
+        }
+        
+        if(jDSD1.isSelected()){
+            defectosSep.add("11 DERECHO");
+        }
+        
+        if(jDSD2.isSelected()){
+            defectosSep.add("22 DERECHO");
+        }
+        
+        if(jDSD3.isSelected()){
+            defectosSep.add("33 DERECHO");
+        }
+        
+        if(jDSD4.isSelected()){
+            defectosSep.add("44 DERECHO");
+        }
+    }
+
+    public ArrayList<String> getDefectosRep() {
+        return defectosRep;
+    }
+
+    public ArrayList<String> getDefectosSep() {
+        return defectosSep;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,32 +141,32 @@ public class VistaRegistrarDefecto extends javax.swing.JFrame {
     private void initComponents() {
 
         jAprobar = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        jDRI1 = new javax.swing.JCheckBox();
+        jDRD1 = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
+        jDRI2 = new javax.swing.JCheckBox();
+        jDRD2 = new javax.swing.JCheckBox();
         jLabel2 = new javax.swing.JLabel();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
+        jDRD3 = new javax.swing.JCheckBox();
+        jDRI3 = new javax.swing.JCheckBox();
         jLabel3 = new javax.swing.JLabel();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
+        jDRD4 = new javax.swing.JCheckBox();
+        jDRI4 = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jCheckBox9 = new javax.swing.JCheckBox();
-        jCheckBox10 = new javax.swing.JCheckBox();
+        jDSD3 = new javax.swing.JCheckBox();
+        jDSI3 = new javax.swing.JCheckBox();
         jLabel7 = new javax.swing.JLabel();
-        jCheckBox11 = new javax.swing.JCheckBox();
-        jCheckBox12 = new javax.swing.JCheckBox();
+        jDSD4 = new javax.swing.JCheckBox();
+        jDSI4 = new javax.swing.JCheckBox();
         jLabel8 = new javax.swing.JLabel();
-        jCheckBox13 = new javax.swing.JCheckBox();
-        jCheckBox14 = new javax.swing.JCheckBox();
+        jDSI1 = new javax.swing.JCheckBox();
+        jDSD1 = new javax.swing.JCheckBox();
         jLabel9 = new javax.swing.JLabel();
-        jCheckBox15 = new javax.swing.JCheckBox();
-        jCheckBox16 = new javax.swing.JCheckBox();
+        jDSI2 = new javax.swing.JCheckBox();
+        jDSD2 = new javax.swing.JCheckBox();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -167,11 +249,11 @@ public class VistaRegistrarDefecto extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jCheckBox3)
+                                .addComponent(jDRI2)
                                 .addGap(40, 40, 40)
                                 .addComponent(jLabel2))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jCheckBox1)
+                                .addComponent(jDRI1)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -182,21 +264,21 @@ public class VistaRegistrarDefecto extends javax.swing.JFrame {
                                         .addGap(0, 0, Short.MAX_VALUE)))))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jCheckBox6)
-                                .addComponent(jCheckBox8))
+                                .addComponent(jDRI3)
+                                .addComponent(jDRI4))
                             .addGap(40, 40, 40)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel4)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jCheckBox7))
+                                    .addComponent(jDRD4))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel3)
                                     .addGap(36, 36, 36)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jCheckBox2)
-                                        .addComponent(jCheckBox5)
-                                        .addComponent(jCheckBox4))))))
+                                        .addComponent(jDRD1)
+                                        .addComponent(jDRD3)
+                                        .addComponent(jDRD2))))))
                     .addComponent(jRegistrarRep, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,11 +289,11 @@ public class VistaRegistrarDefecto extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jCheckBox15)
+                                        .addComponent(jDSI2)
                                         .addGap(40, 40, 40)
                                         .addComponent(jLabel10))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jCheckBox13)
+                                        .addComponent(jDSI1)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -222,21 +304,21 @@ public class VistaRegistrarDefecto extends javax.swing.JFrame {
                                                 .addGap(0, 0, Short.MAX_VALUE)))))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jCheckBox10)
-                                        .addComponent(jCheckBox12))
+                                        .addComponent(jDSI3)
+                                        .addComponent(jDSI4))
                                     .addGap(40, 40, 40)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel8)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jCheckBox11))
+                                            .addComponent(jDSD4))
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel7)
                                             .addGap(36, 36, 36)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jCheckBox14)
-                                                .addComponent(jCheckBox9)
-                                                .addComponent(jCheckBox16))))))
+                                                .addComponent(jDSD1)
+                                                .addComponent(jDSD3)
+                                                .addComponent(jDSD2))))))
                             .addComponent(jRegistrarSep, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addContainerGap(98, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -253,25 +335,24 @@ public class VistaRegistrarDefecto extends javax.swing.JFrame {
                         .addComponent(jLabel6)
                         .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jCheckBox1)
-                                .addComponent(jCheckBox2))
+                            .addComponent(jDRD1)
+                            .addComponent(jDRI1)
                             .addComponent(jLabel1))
                         .addGap(11, 11, 11)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jCheckBox3)
-                            .addComponent(jCheckBox4))
+                            .addComponent(jDRI2)
+                            .addComponent(jDRD2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox6)
+                            .addComponent(jDRI3)
                             .addComponent(jLabel3)
-                            .addComponent(jCheckBox5))
+                            .addComponent(jDRD3))
                         .addGap(3, 3, 3)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(jCheckBox8)
-                            .addComponent(jCheckBox7))
+                            .addComponent(jDRI4)
+                            .addComponent(jDRD4))
                         .addGap(18, 18, 18)
                         .addComponent(jRegistrarRep)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -287,25 +368,24 @@ public class VistaRegistrarDefecto extends javax.swing.JFrame {
                                 .addComponent(jLabel11)
                                 .addGap(46, 46, 46)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jCheckBox13)
-                                        .addComponent(jCheckBox14))
+                                    .addComponent(jDSD1)
+                                    .addComponent(jDSI1)
                                     .addComponent(jLabel9))
                                 .addGap(11, 11, 11)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel10)
-                                    .addComponent(jCheckBox15)
-                                    .addComponent(jCheckBox16))
+                                    .addComponent(jDSI2)
+                                    .addComponent(jDSD2))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBox10)
+                                    .addComponent(jDSI3)
                                     .addComponent(jLabel7)
-                                    .addComponent(jCheckBox9))
+                                    .addComponent(jDSD3))
                                 .addGap(3, 3, 3)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
-                                    .addComponent(jCheckBox12)
-                                    .addComponent(jCheckBox11))))
+                                    .addComponent(jDSI4)
+                                    .addComponent(jDSD4))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
@@ -336,23 +416,23 @@ public class VistaRegistrarDefecto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jAbandonar;
     private javax.swing.JButton jAprobar;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox10;
-    private javax.swing.JCheckBox jCheckBox11;
-    private javax.swing.JCheckBox jCheckBox12;
-    private javax.swing.JCheckBox jCheckBox13;
-    private javax.swing.JCheckBox jCheckBox14;
-    private javax.swing.JCheckBox jCheckBox15;
-    private javax.swing.JCheckBox jCheckBox16;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
-    private javax.swing.JCheckBox jCheckBox7;
-    private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JCheckBox jCheckBox9;
     private javax.swing.JButton jContinuar;
+    private javax.swing.JCheckBox jDRD1;
+    private javax.swing.JCheckBox jDRD2;
+    private javax.swing.JCheckBox jDRD3;
+    private javax.swing.JCheckBox jDRD4;
+    private javax.swing.JCheckBox jDRI1;
+    private javax.swing.JCheckBox jDRI2;
+    private javax.swing.JCheckBox jDRI3;
+    private javax.swing.JCheckBox jDRI4;
+    private javax.swing.JCheckBox jDSD1;
+    private javax.swing.JCheckBox jDSD2;
+    private javax.swing.JCheckBox jDSD3;
+    private javax.swing.JCheckBox jDSD4;
+    private javax.swing.JCheckBox jDSI1;
+    private javax.swing.JCheckBox jDSI2;
+    private javax.swing.JCheckBox jDSI3;
+    private javax.swing.JCheckBox jDSI4;
     private javax.swing.JButton jHermanar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
