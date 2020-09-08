@@ -144,14 +144,82 @@ public class VistaRegistrarDefecto extends javax.swing.JFrame {
             defectosDer.add(defecto);
         }
     }
+    
+    public void limpiarCasillas(){
+        if(jDRI1.isSelected()){
+            jDRI1.setSelected(false);
+        }
+        
+        if(jDRI2.isSelected()){
+            jDRI2.setSelected(false);
+        }
+        
+        if(jDRI3.isSelected()){
+            jDRI3.setSelected(false);
+        }
+        
+        if(jDRI4.isSelected()){
+            jDRI4.setSelected(false);
+        }
+        
+        if(jDRD1.isSelected()){
+            jDRD1.setSelected(false);
+        }
+        
+        if(jDRD2.isSelected()){
+            jDRD2.setSelected(false);
+        }
+        
+        if(jDRD3.isSelected()){
+            jDRD3.setSelected(false);
+        }
+        
+        if(jDRD4.isSelected()){
+            jDRD4.setSelected(false);
+        }
+        
+        if(jDSI1.isSelected()){
+            jDSI1.setSelected(false);
+        }
+        
+        if(jDSI2.isSelected()){
+            jDSI2.setSelected(false);
+        }
+        
+        if(jDSI3.isSelected()){
+            jDSI3.setSelected(false);
+        }
+        
+        if(jDSI4.isSelected()){
+            jDSI4.setSelected(false);
+        }
+        
+        if(jDSD1.isSelected()){
+            jDSD1.setSelected(false);
+        }
+        
+        if(jDSD2.isSelected()){
+            jDSD2.setSelected(false);
+        }
+        
+        if(jDSD3.isSelected()){
+            jDSD3.setSelected(false);
+        }
+        
+        if(jDSD4.isSelected()){
+            jDSD4.setSelected(false);
+        }
+    }
 
     public ArrayList<String> getDefectosIzquierdo() {
         seleccionDefectosIzquierdo();
+        limpiarCasillas();
         return defectosIzq;
     }
 
     public ArrayList<String> getDefectosDerecho() {
         seleccionDefectosDerecho();
+        limpiarCasillas();
         return defectosDer;
     }
     
