@@ -5,6 +5,8 @@
  */
 package vista;
 
+import controlador.Controlador;
+
 /**
  *
  * @author Leonel
@@ -28,6 +30,23 @@ public class VistaRegistrarDefecto extends javax.swing.JFrame {
     public void ejecutar(){
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+    }
+    
+    public void setControlador (Controlador control){
+        jAprobar.setActionCommand(BTN_APROBAR);
+        jAprobar.addActionListener(control);
+        jContinuar.setActionCommand(BTN_CONTINUAR);
+        jContinuar.addActionListener(control);
+        jAbandonar.setActionCommand(BTN_ABANDONAR);
+        jAbandonar.addActionListener(control);
+        
+        jRegistrarRep.setActionCommand(BTN_REGISTRAR_REPROCESADOS);
+        jRegistrarRep.addActionListener(control);
+        jRegistrarSep.setActionCommand(BTN_REGISTRAR_SEPARADOS);
+        jRegistrarSep.addActionListener(control);
+        
+        jHermanar.setActionCommand(BTN_HERMANAR);
+        jHermanar.addActionListener(control);
     }
 
     /**
