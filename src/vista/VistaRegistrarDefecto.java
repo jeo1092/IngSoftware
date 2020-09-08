@@ -67,7 +67,7 @@ public class VistaRegistrarDefecto extends javax.swing.JFrame {
         
         if(jDRI2.isSelected()){
             String [] defecto = {"2", "IZQUIERDO"};
-            defectosRep.add(defecto);;
+            defectosRep.add(defecto);
         }
         
         if(jDRI3.isSelected()){
