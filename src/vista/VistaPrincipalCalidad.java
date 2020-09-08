@@ -197,6 +197,7 @@ public class VistaPrincipalCalidad extends javax.swing.JFrame {
 
     private void jConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConfirmarActionPerformed
         // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_jConfirmarActionPerformed
         public int getOrden(){
         int FilaSeleccionada = jTablaOP.getSelectedRow();

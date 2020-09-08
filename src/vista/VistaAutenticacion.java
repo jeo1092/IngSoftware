@@ -22,11 +22,13 @@ public class VistaAutenticacion extends javax.swing.JFrame {
     public void ejecutarAutenticacion(){
          this.setVisible(true);
          this.setLocationRelativeTo(null);
+         
     }
     
     public void setControlador(Controlador control){
     jAceptar.setActionCommand(BTN_ACEPTAR);
     jAceptar.addActionListener(control);
+    
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,9 +66,19 @@ public class VistaAutenticacion extends javax.swing.JFrame {
 
         jAceptar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jAceptar.setText("Aceptar");
+        jAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAceptarActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,6 +133,16 @@ public class VistaAutenticacion extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_UsuarioActionPerformed
+
+    private void jAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAceptarActionPerformed
+        // TODO add your handling code here:
+        Usuario.setText("");
+    }//GEN-LAST:event_jAceptarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
     public String getUsuario(){
     String nombre;
     nombre= Usuario.getText();
