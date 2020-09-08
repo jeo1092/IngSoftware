@@ -19,6 +19,7 @@ public class Controlador implements ActionListener{
     public VistaAutenticacion VistaAutent;
     public VistaPrincipalLinea VistaPL;
     public VistaPrincipalCalidad VistaCalidad;
+    public VistaPrincipalIC vistaPrincipalCalidad;
     public VistacrearOP vistaCrearOP;
     public VistaAdministrarOP vistaAdmOP;
     public Repositorio repo;
@@ -28,11 +29,7 @@ public class Controlador implements ActionListener{
     public OrdenProduccion orden;
 
     public Controlador() {
-        VistaAutent= new VistaAutenticacion();
-       
-        VistaCalidad= new VistaPrincipalCalidad();
-        vistaCrearOP= new VistacrearOP();
-        vistaAdmOP = new VistaAdministrarOP();
+        VistaAutent= new VistaAutenticacion();      
         repo= new Repositorio();
     }
 
@@ -50,24 +47,25 @@ public class Controlador implements ActionListener{
                 }else{
                     usuarioLinea = repo.getUsuarios().get(1);
                 }
-                 VistaPL= new VistaPrincipalLinea();
+                VistaPL= new VistaPrincipalLinea();
                 VistaPL.setControlador(this);
                 VistaPL.ejecutar();
             }else
             {
-                if(VistaAutent.getUsuario().equals(repo.getUsuarios().get(1).getNombre()) && repo.getUsuarios().get(1).getTipo().SUPERVISORCALIDAD==tipo.SUPERVISORCALIDAD)
+                if(VistaAutent.getUsuario().equals("daniel"))
                 {
                     usuarioCalidad = repo.getUsuarios().get(2);
-                    VistaCalidad.setControlador(this);
-                    VistaCalidad.ejecutar();    
+                    vistaPrincipalCalidad = new VistaPrincipalIC();
+                    vistaPrincipalCalidad.setControlador(this);
+                    vistaPrincipalCalidad.ejecutar();    
                 }
             }
 
         }
         if(e.getActionCommand().equals(VistaPL.BTN_CREAROP)){
-            System.out.print("paso");
             if(usuarioLinea.getEstado() == EstadoUsuario.LIBRE){
                 orden = new OrdenProduccion();
+                vistaCrearOP= new VistacrearOP();
                 vistaCrearOP.setControlador(this);
                 vistaCrearOP.ejecutar();
                 ArrayList<Integer> linea = new ArrayList<>();
@@ -101,12 +99,43 @@ public class Controlador implements ActionListener{
         }
         if(e.getActionCommand().equals(vistaCrearOP.BTN_CONFIRMAROP)){
             usuarioLinea.setEstado(EstadoUsuario.ASIGNADO);
+            System.out.println("1");
             repo.agregarOrden(orden);
         }
         if(e.getActionCommand().equals(VistaPL.BTN_ADMINISTRAROP)){
+            vistaAdmOP = new VistaAdministrarOP();
             vistaAdmOP.setControlador(this);
             vistaAdmOP.ejecutar();        
             vistaAdmOP.setOrdenProduccion(orden.getLineaProduccion().getNumeroLinea(), orden.getModelo().getDescripcion(), orden.getColor().getDescripcion(), orden.getSupervisorLinea().getNombre(), orden.getEstadoOrden().name());
+        }
+        
+        if(e.getActionCommand().equals(vistaAdmOP.BTN_MODIFICAR_ESTADO)){
+            //System.out.print(vistaAdmOP.getNuevoEstado());
+            if(vistaAdmOP.getNuevoEstado() == 1){              
+                orden.setEstadoOrden(EstadoOrden.PAUSA);
+            }
+            else if(vistaAdmOP.getNuevoEstado() == 2){
+                orden.setEstadoOrden(EstadoOrden.PROCESO);
+            }else{
+                orden.setEstadoOrden(EstadoOrden.FINALIZADA);
+            }
+            vistaAdmOP.setOrdenProduccion(orden.getLineaProduccion().getNumeroLinea(), orden.getModelo().getDescripcion(), orden.getColor().getDescripcion(), orden.getSupervisorLinea().getNombre(), orden.getEstadoOrden().name());
+        }
+        
+        if(e.getActionCommand().equals(vistaPrincipalCalidad.BTN_ASIGNAR_ORDEN)){
+            VistaCalidad= new VistaPrincipalCalidad();
+            VistaCalidad.setControlador(this);
+            VistaCalidad.ejecutar();
+            ArrayList<String []> filas = new ArrayList<>();
+            for(OrdenProduccion orden : repo.obtenerOrdenesDisponibles()){
+                String [] valores = {orden.getLineaProduccion().getNumeroLinea()+"", orden.getNumeroOrden()+"",orden.getModelo().getDescripcion(),orden.getColor().getDescripcion(),orden.getEstadoOrden().name()};               
+                filas.add(valores); 
+            }         
+            VistaCalidad.cargarLista(filas);
+        }
+        
+        if(e.getActionCommand().equals(VistaCalidad.BTN_CONFIRMAR)){
+            
         }
     }
 }

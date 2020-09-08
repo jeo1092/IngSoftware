@@ -28,11 +28,12 @@ public class VistaAdministrarOP extends javax.swing.JFrame {
     }
     
     public void setControlador(Controlador control){
-        jButton1.setActionCommand(BTN_MODIFICAR_ESTADO);
-        jButton1.addActionListener(control);
+        jButton4.setActionCommand(BTN_MODIFICAR_ESTADO);
+        jButton4.addActionListener(control);
     }
     
     public int getNuevoEstado(){
+        System.out.print(nuevoEstado);
         return nuevoEstado;
     }
     
@@ -176,9 +177,9 @@ public class VistaAdministrarOP extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

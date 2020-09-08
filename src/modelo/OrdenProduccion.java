@@ -46,6 +46,11 @@ public class OrdenProduccion {
     }
 
     public void setEstadoOrden(EstadoOrden estadoOrden) {
+        if(estadoOrden == EstadoOrden.PROCESO){
+            iniciarNuevoPeriodo();
+        }else{
+            finalizarPeriodoActual();
+        }
         this.estadoOrden = estadoOrden;
     }
 
@@ -92,6 +97,10 @@ public class OrdenProduccion {
 
     public ArrayList<PeriodoFuncionamiento> getPeriodos() {
         return periodos;
+    }
+    
+    public PeriodoFuncionamiento obtenerUltimoPeriodo(){
+        return periodos.get(periodos.size()-1);
     }
 
     public void setPeriodos(ArrayList<PeriodoFuncionamiento> periodos) {
