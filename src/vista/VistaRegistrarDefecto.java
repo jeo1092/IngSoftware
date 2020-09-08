@@ -54,6 +54,10 @@ public class VistaRegistrarDefecto extends javax.swing.JFrame {
         jHermanar.addActionListener(control);
     }
     
+    public void setEstadoOrden(String estado){
+        jTextField1.setText(estado);
+    }
+    
     public void actionPerformed(ActionEvent e){
         
         if(jDRI1.isSelected()){
