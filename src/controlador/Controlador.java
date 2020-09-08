@@ -173,6 +173,28 @@ public class Controlador implements ActionListener{
                 }
                 repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspD);
             }                                    
-        }                             
+        }
+        
+        if(e.getActionCommand().equals(vistaRegistrar.BTN_REGISTRAR_SEPARADOS)){
+            if(vistaRegistrar.getDefectosIzquierdo().size() != 0){
+                Inspeccion inspI = new Inspeccion();
+                inspI.setPie(Pie.IZQUIERDO);
+                for(String d: vistaRegistrar.getDefectosIzquierdo()){
+                    Defecto defecto = repo.buscarDefectosPorCodigo(Integer.parseInt(d));
+                    inspI.agregarDefecto(defecto);            
+                    //
+                }
+                repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspI);
+            }
+            if(vistaRegistrar.getDefectosDerecho().size() != 0){
+                Inspeccion inspD = new Inspeccion();
+                inspD.setPie(Pie.DERECHO);
+                for(String d: vistaRegistrar.getDefectosDerecho()){
+                    Defecto defecto = repo.buscarDefectosPorCodigo(Integer.parseInt(d));
+                    inspD.agregarDefecto(defecto);
+                }
+                repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspD);
+            }
+        }
     }
 }
