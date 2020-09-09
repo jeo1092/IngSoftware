@@ -165,7 +165,6 @@ public class Controlador implements ActionListener{
         
         if(e.getActionCommand().equals(vistaRegistrar.BTN_REGISTRAR_REPROCESADOS)){
             
-           // if(vistaRegistrar.getDefectosIzquierdo().size() != 0){
                 Inspeccion inspI = new Inspeccion();
                 inspI.setPie(Pie.IZQUIERDO);
                 for(String d: vistaRegistrar.getDefectosIzquierdo()){
@@ -175,10 +174,7 @@ public class Controlador implements ActionListener{
                 if(inspI.getDefectos().size()!=0){
                     repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspI);
                 }
-                
-                
-           // }
-          // if(vistaRegistrar.getDefectosDerecho().size() != 0){
+
                 Inspeccion inspD = new Inspeccion();
                 inspD.setPie(Pie.DERECHO);
                 for(String d: vistaRegistrar.getDefectosDerecho()){
@@ -188,32 +184,35 @@ public class Controlador implements ActionListener{
                 if(inspD.getDefectos().size()!=0){
                     repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspD);
                 }
-                
-            //}
+               
             vistaRegistrar.limpiar();
+            buscarDefectosEnUltimaHora(4);
         }
         
         
         if(e.getActionCommand().equals(vistaRegistrar.BTN_REGISTRAR_SEPARADOS)){
-            if(vistaRegistrar.getDefectosIzquierdo().size() != 0){
+
                 Inspeccion inspI = new Inspeccion();
                 inspI.setPie(Pie.IZQUIERDO);
                 for(String d: vistaRegistrar.getDefectosIzquierdo()){
                     Defecto defecto = repo.buscarDefectosPorCodigo(Integer.parseInt(d));
                     inspI.agregarDefecto(defecto);            
-                    //
                 }
-                repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspI);
-            }
-            if(vistaRegistrar.getDefectosDerecho().size() != 0){
+                if(inspI.getDefectos().size()!=0){
+                    repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspI);
+                }
+                
                 Inspeccion inspD = new Inspeccion();
                 inspD.setPie(Pie.DERECHO);
                 for(String d: vistaRegistrar.getDefectosDerecho()){
                     Defecto defecto = repo.buscarDefectosPorCodigo(Integer.parseInt(d));
                     inspD.agregarDefecto(defecto);
                 }
-                repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspD);                       
-            }
+                if(inspD.getDefectos().size()!=0){
+                    repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspD);
+                }
+                vistaRegistrar.limpiar();
+                buscarDefectosEnUltimaHora(4);                                 
         }
         if(e.getActionCommand().equals(vistaRegistrar.BTN_HERMANAR)){               
                 vistaHermanar = new VistaHermanar();
