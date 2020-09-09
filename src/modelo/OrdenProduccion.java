@@ -15,6 +15,7 @@ import java.util.GregorianCalendar;
  */
 public class OrdenProduccion {
     private int numeroOrden;
+    private int objetivo = 500;
     private Modelo modelo;
     private Color color;
     private EstadoOrden estadoOrden;
@@ -106,6 +107,16 @@ public class OrdenProduccion {
     public void setPeriodos(ArrayList<PeriodoFuncionamiento> periodos) {
         this.periodos = periodos;
     }
+
+    public int getObjetivo() {
+        return objetivo;
+    }
+
+    public void setObjetivo(int objetivo) {
+        this.objetivo = objetivo;
+    }
+    
+    
     
     @Override
     public String toString() {
