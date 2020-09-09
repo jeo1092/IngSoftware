@@ -39,8 +39,9 @@ public class VistaPresentarDatos extends javax.swing.JFrame {
         
                                                             }
         
-        public void cargarListaProduccion(String Turno,int produccion, int objetivo){
+        public void cargarListaProduccion(ArrayList<String []> defectos){
         DefaultTableModel tabla= new DefaultTableModel();
+        tabla.addColumn("Numero de orden");
         tabla.addColumn("Turno");
         tabla.addColumn("Produccion de Primera");
         tabla.addColumn("Objetivo Propuesto");
