@@ -34,17 +34,20 @@ public class VistaPresentarDatos extends javax.swing.JFrame {
         tabla.addColumn("Cantidad");
         for(int i=0; defectos.size()>i;i++){
         tabla.addRow(defectos.get(i));
-        }
+                                            }
         jTablaLD.setModel(tabla);
         
-                                                            }
+                                                                    }
         
-        public void cargarListaProduccion(ArrayList<String []> defectos){
+        public void cargarListaProduccion(ArrayList<String []> produccion){
         DefaultTableModel tabla= new DefaultTableModel();
         tabla.addColumn("Numero de orden");
         tabla.addColumn("Turno");
         tabla.addColumn("Produccion de Primera");
         tabla.addColumn("Objetivo Propuesto");
+        for(int i=0; produccion.size()>i;i++){
+        tabla.addRow(produccion.get(i));
+        }
         jTablaPP.setModel(tabla);
                                                                 }
     /**
