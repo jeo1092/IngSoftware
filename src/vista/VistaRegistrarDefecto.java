@@ -59,7 +59,6 @@ public class VistaRegistrarDefecto extends javax.swing.JFrame {
     }
     
     public void seleccionDefectosIzquierdo(){
-        
         if(jDRI1.isSelected()){
             String defecto = "1";
             defectosIzq.add(defecto);
@@ -223,6 +222,11 @@ public class VistaRegistrarDefecto extends javax.swing.JFrame {
         return defectosDer;
     }
     
+    public void limpiar(){
+        defectosIzq.clear();
+        defectosDer.clear();
+    }
+    
     
 
     /**
@@ -374,7 +378,7 @@ public class VistaRegistrarDefecto extends javax.swing.JFrame {
                                         .addComponent(jDRD3)
                                         .addComponent(jDRD2))))))
                     .addComponent(jRegistrarRep, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -414,7 +418,7 @@ public class VistaRegistrarDefecto extends javax.swing.JFrame {
                                                 .addComponent(jDSD3)
                                                 .addComponent(jDSD2))))))
                             .addComponent(jRegistrarSep, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addContainerGap(98, Short.MAX_VALUE))
+                        .addContainerGap(57, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jHermanar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -482,7 +486,7 @@ public class VistaRegistrarDefecto extends javax.swing.JFrame {
                                     .addComponent(jDSD4))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel12)
                                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))

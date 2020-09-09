@@ -22,17 +22,18 @@ public class VistaPresentarDatos extends javax.swing.JFrame {
                                       }
         public void ejecutar(){
         this.setVisible(true);
-        this.setLocationRelativeTo(null);
+        //this.setLocationRelativeTo(null);
                                 }
         public void setControlador(){
-    
-                                        }
-        public void cargarListaDefectos(ArrayList defecto){
+            
+        }
+        public void cargarListaDefectos(ArrayList<String []> defectos){
         DefaultTableModel tabla= new DefaultTableModel();
-        tabla.addColumn("Codigo de Defecto");
-        tabla.addColumn("Tipo de Defecto");
-        for(int i=0; defecto.size()>i;i++){
-        tabla.addRow((String[]) defecto.get(i));
+        tabla.addColumn("Descripcion");
+        tabla.addColumn("Codigo");
+        tabla.addColumn("Cantidad");
+        for(int i=0; defectos.size()>i;i++){
+        tabla.addRow(defectos.get(i));
         }
         jTablaLD.setModel(tabla);
         
@@ -83,13 +84,13 @@ public class VistaPresentarDatos extends javax.swing.JFrame {
 
         jTablaLD.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Defecto", "Codigo", "Cantidad"
             }
         ));
         jScrollPane2.setViewportView(jTablaLD);

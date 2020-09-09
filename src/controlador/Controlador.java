@@ -7,7 +7,11 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
+import java.util.Collections;
 import modelo.*;
 import vista.*;
 
@@ -23,6 +27,8 @@ public class Controlador implements ActionListener{
     public VistacrearOP vistaCrearOP;
     public VistaAdministrarOP vistaAdmOP;
     public VistaRegistrarDefecto vistaRegistrar;
+    public VistaHermanar vistaHermanar;
+    public VistaPresentarDatos vistaDatos;
     public Repositorio repo;
     public TipoUsuario tipo; // no es necesario crear una variable tipo
     public Usuario usuarioCalidad;
@@ -30,13 +36,16 @@ public class Controlador implements ActionListener{
     public OrdenProduccion orden;
 
     public Controlador() {
-        VistaAutent= new VistaAutenticacion();      
+        VistaAutent= new VistaAutenticacion();
+        vistaDatos = new VistaPresentarDatos();
         repo= new Repositorio();
     }
 
     public void ejecutarAutenticacion(){
         VistaAutent.setControlador(this);
         VistaAutent.ejecutarAutenticacion();
+        vistaDatos.ejecutar();
+        //buscarDefectosEnUltimaHora(4);
     }
 
     public void actionPerformed (ActionEvent e){
@@ -100,7 +109,6 @@ public class Controlador implements ActionListener{
         }
         if(e.getActionCommand().equals(vistaCrearOP.BTN_CONFIRMAROP)){
             usuarioLinea.setEstado(EstadoUsuario.ASIGNADO);
-            System.out.println("1");
             repo.agregarOrden(orden);
         }
         if(e.getActionCommand().equals(VistaPL.BTN_ADMINISTRAROP)){
@@ -138,7 +146,7 @@ public class Controlador implements ActionListener{
         
         if(e.getActionCommand().equals(VistaCalidad.BTN_CONFIRMAR)){
             repo.obtenerOPporNumero(VistaCalidad.getOrden()).obtenerUltimoPeriodo().setUsuario(usuarioCalidad);
-            usuarioCalidad.setEstado(EstadoUsuario.ASIGNADO);
+            usuarioCalidad.setEstado(EstadoUsuario.ASIGNADO);                   
         }
         
         if(e.getActionCommand().equals(vistaPrincipalCalidad.BTN_REALIZAR_INSPECCION)){
@@ -152,9 +160,11 @@ public class Controlador implements ActionListener{
             Inspeccion inspeccion = new Inspeccion();
             inspeccion.setCalidad(Calidad.PRIMERA);
             repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspeccion);
+            buscarDefectosEnUltimaHora(4);
         }
         
         if(e.getActionCommand().equals(vistaRegistrar.BTN_REGISTRAR_REPROCESADOS)){
+            
             if(vistaRegistrar.getDefectosIzquierdo().size() != 0){
                 Inspeccion inspI = new Inspeccion();
                 inspI.setPie(Pie.IZQUIERDO);
@@ -163,6 +173,7 @@ public class Controlador implements ActionListener{
                     inspI.agregarDefecto(defecto); 
                 }
                 repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspI);
+                
             }
             if(vistaRegistrar.getDefectosDerecho().size() != 0){
                 Inspeccion inspD = new Inspeccion();
@@ -172,8 +183,10 @@ public class Controlador implements ActionListener{
                     inspD.agregarDefecto(defecto);
                 }
                 repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspD);
-            }                                    
+            }
+            vistaRegistrar.limpiar();
         }
+        
         
         if(e.getActionCommand().equals(vistaRegistrar.BTN_REGISTRAR_SEPARADOS)){
             if(vistaRegistrar.getDefectosIzquierdo().size() != 0){
@@ -193,8 +206,83 @@ public class Controlador implements ActionListener{
                     Defecto defecto = repo.buscarDefectosPorCodigo(Integer.parseInt(d));
                     inspD.agregarDefecto(defecto);
                 }
-                repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspD);
+                repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspD);                       
             }
         }
+        if(e.getActionCommand().equals(vistaRegistrar.BTN_HERMANAR)){               
+                vistaHermanar = new VistaHermanar();
+                vistaHermanar.setControlador(this);
+                vistaHermanar.ejecutar();
+                vistaHermanar.setEstadoOrden(repo.obtenerOPporSupCalidad(usuarioCalidad).getEstadoOrden().name());
+        }
+        
+        if(e.getActionCommand().equals(vistaHermanar.BTN_REGISTRAR_PRIMERA)){
+            Inspeccion inspeccion = new Inspeccion();
+            inspeccion.setCalidad(Calidad.PRIMERA);
+            repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspeccion);
+        }
+        
+        if(e.getActionCommand().equals(vistaHermanar.BTN_REGISTRAR_SEGUNDA)){
+            Inspeccion inspeccion = new Inspeccion();
+            inspeccion.setCalidad(Calidad.SEGUNDA);
+            repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspeccion);
+        }
+    }
+    
+    public void buscarDefectosEnUltimaHora(int horas){
+        ArrayList<Defecto> d1 = new ArrayList<>();
+        ArrayList<Defecto> d2 = new ArrayList<>();
+        ArrayList<Defecto> d3 = new ArrayList<>();
+        ArrayList<Defecto> d4 = new ArrayList<>();
+        ArrayList<Defecto> d5 = new ArrayList<>();
+        ArrayList<Defecto> d6 = new ArrayList<>();
+        ArrayList<Defecto> d7 = new ArrayList<>();
+        ArrayList<Defecto> d8 = new ArrayList<>();
+        Calendar c = new GregorianCalendar();
+        for(OrdenProduccion o: repo.getOrdenes()){         
+            for(PeriodoFuncionamiento p: o.getPeriodos()){
+                for(Inspeccion i: p.getInspecciones()){
+                    if(i.getHorario()>= (c.get(Calendar.HOUR_OF_DAY) - horas) ){
+                        System.out.print(i.getDefectos().size());
+                        for(Defecto d: i.getDefectos()){
+                            if(d.getCodigo() == 1){d1.add(d);}
+                            if(d.getCodigo() == 2){d2.add(d);}
+                            if(d.getCodigo() == 3){d3.add(d);}
+                            if(d.getCodigo() == 4){d4.add(d);}
+                            if(d.getCodigo() == 11){d5.add(d);}
+                            if(d.getCodigo() == 22){d6.add(d);}
+                            if(d.getCodigo() == 33){d7.add(d);}
+                            if(d.getCodigo() == 44){d8.add(d);}
+                        }
+                    
+                    }
+                }
+            }
+        }
+        Integer [] listaOrdenada = {d1.size(),d2.size(),d3.size(),d4.size(),d5.size(),d6.size(),d7.size(),d8.size()};
+        Arrays.sort(listaOrdenada, Collections.reverseOrder());
+        ArrayList<ArrayList<Defecto>> arrayDefectos = new ArrayList<>();arrayDefectos.add(d1);arrayDefectos.add(d2);arrayDefectos.add(d3);arrayDefectos.add(d4);arrayDefectos.add(d5);arrayDefectos.add(d6);arrayDefectos.add(d7);arrayDefectos.add(d8);
+        ArrayList<String []> defectosVista = new ArrayList<>();
+        for(ArrayList<Defecto> l : arrayDefectos){
+            if(l.size() > 0){
+                if(l.size() == listaOrdenada[0]){
+                    String[] def1 = {l.get(0).getDescripcion(),l.get(0).getCodigo()+"",l.size()+""};
+                    defectosVista.add(def1);
+                
+                }
+                else if(l.size() == listaOrdenada[1]){
+                    String[] def2 = {l.get(0).getDescripcion(),l.get(0).getCodigo()+"",l.size()+""};
+                    defectosVista.add(def2);
+                
+                }   
+                else if(l.size() == listaOrdenada[2]){
+                    String[] def3 = {l.get(0).getDescripcion(),l.get(0).getCodigo()+"",l.size()+""};
+                    defectosVista.add(def3);
+                  
+                }
+            }          
+        }
+        System.out.print("tamano defectos "+ defectosVista.size());
+        vistaDatos.cargarListaDefectos(defectosVista);
     }
 }

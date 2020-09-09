@@ -75,14 +75,14 @@ public final class Repositorio {
     }
     
     private void generarDefectosReproceso(){
-        defectos.add(new Defecto(1, TipoDefecto.REPROCESO));
-        defectos.add(new Defecto(2, TipoDefecto.REPROCESO));
-        defectos.add(new Defecto(3, TipoDefecto.REPROCESO));
-        defectos.add(new Defecto(4, TipoDefecto.REPROCESO));
-        defectos.add(new Defecto(11, TipoDefecto.SEPARACION));
-        defectos.add(new Defecto(22, TipoDefecto.SEPARACION));
-        defectos.add(new Defecto(33, TipoDefecto.SEPARACION));
-        defectos.add(new Defecto(44, TipoDefecto.SEPARACION));
+        defectos.add(new Defecto(1, TipoDefecto.REPROCESO, "DefectoA"));
+        defectos.add(new Defecto(2, TipoDefecto.REPROCESO, "DefectoB"));
+        defectos.add(new Defecto(3, TipoDefecto.REPROCESO, "DefectoC"));
+        defectos.add(new Defecto(4, TipoDefecto.REPROCESO, "DefectoD"));
+        defectos.add(new Defecto(11, TipoDefecto.SEPARACION, "DefectoE"));
+        defectos.add(new Defecto(22, TipoDefecto.SEPARACION, "DefectoF"));
+        defectos.add(new Defecto(33, TipoDefecto.SEPARACION, "DefectoG"));
+        defectos.add(new Defecto(44, TipoDefecto.SEPARACION, "DefectoH"));
     }
 
     public void agregarOrden(OrdenProduccion orden) {

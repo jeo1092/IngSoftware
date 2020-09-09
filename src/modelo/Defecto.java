@@ -11,12 +11,13 @@ package modelo;
  */
 public class Defecto {
     private int codigo;
-    private Pie pie;
     private TipoDefecto tipoDefecto;
+    private String descripcion;
     
-    public Defecto(int codigo, TipoDefecto tipoDefecto){
+    public Defecto(int codigo, TipoDefecto tipoDefecto, String descripcion){
         this.codigo = codigo;
         this.tipoDefecto = tipoDefecto;
+        this.descripcion = descripcion;
     }
 
 //    public Defecto(Pie pie, TipoDefecto tipoDefecto) {
@@ -32,14 +33,6 @@ public class Defecto {
         this.codigo = codigo;
     }
 
-    public Pie getPie() {
-        return pie;
-    }
-
-    public void setPie(Pie pie) {
-        this.pie = pie;
-    }
-
     public TipoDefecto getTipoDefecto() {
         return tipoDefecto;
     }
@@ -47,6 +40,12 @@ public class Defecto {
     public void setTipoDefecto(TipoDefecto tipoDefecto) {
         this.tipoDefecto = tipoDefecto;
     }
-    
-    
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    } 
 }
