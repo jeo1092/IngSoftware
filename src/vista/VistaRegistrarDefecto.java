@@ -212,17 +212,18 @@ public class VistaRegistrarDefecto extends javax.swing.JFrame {
 
     public ArrayList<String> getDefectosIzquierdo() {
         seleccionDefectosIzquierdo();
-        limpiarCasillas();
+        //limpiarCasillas();
         return defectosIzq;
     }
 
     public ArrayList<String> getDefectosDerecho() {
         seleccionDefectosDerecho();
-        limpiarCasillas();
+        //limpiarCasillas();
         return defectosDer;
     }
     
     public void limpiar(){
+        limpiarCasillas();
         defectosIzq.clear();
         defectosDer.clear();
     }

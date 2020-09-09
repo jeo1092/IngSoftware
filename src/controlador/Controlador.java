@@ -165,25 +165,31 @@ public class Controlador implements ActionListener{
         
         if(e.getActionCommand().equals(vistaRegistrar.BTN_REGISTRAR_REPROCESADOS)){
             
-            if(vistaRegistrar.getDefectosIzquierdo().size() != 0){
+           // if(vistaRegistrar.getDefectosIzquierdo().size() != 0){
                 Inspeccion inspI = new Inspeccion();
                 inspI.setPie(Pie.IZQUIERDO);
                 for(String d: vistaRegistrar.getDefectosIzquierdo()){
                     Defecto defecto = repo.buscarDefectosPorCodigo(Integer.parseInt(d));
                     inspI.agregarDefecto(defecto); 
                 }
-                repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspI);
+                if(inspI.getDefectos().size()!=0){
+                    repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspI);
+                }
                 
-            }
-            if(vistaRegistrar.getDefectosDerecho().size() != 0){
+                
+           // }
+          // if(vistaRegistrar.getDefectosDerecho().size() != 0){
                 Inspeccion inspD = new Inspeccion();
                 inspD.setPie(Pie.DERECHO);
                 for(String d: vistaRegistrar.getDefectosDerecho()){
                     Defecto defecto = repo.buscarDefectosPorCodigo(Integer.parseInt(d));
                     inspD.agregarDefecto(defecto);
                 }
-                repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspD);
-            }
+                if(inspD.getDefectos().size()!=0){
+                    repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspD);
+                }
+                
+            //}
             vistaRegistrar.limpiar();
         }
         
@@ -243,7 +249,7 @@ public class Controlador implements ActionListener{
             for(PeriodoFuncionamiento p: o.getPeriodos()){
                 for(Inspeccion i: p.getInspecciones()){
                     if(i.getHorario()>= (c.get(Calendar.HOUR_OF_DAY) - horas) ){
-                        System.out.print(i.getDefectos().size());
+                        
                         for(Defecto d: i.getDefectos()){
                             if(d.getCodigo() == 1){d1.add(d);}
                             if(d.getCodigo() == 2){d2.add(d);}
@@ -261,28 +267,48 @@ public class Controlador implements ActionListener{
         }
         Integer [] listaOrdenada = {d1.size(),d2.size(),d3.size(),d4.size(),d5.size(),d6.size(),d7.size(),d8.size()};
         Arrays.sort(listaOrdenada, Collections.reverseOrder());
+        for(int num : listaOrdenada){
+            System.out.print(num);
+        }
+        System.out.print("\n");
         ArrayList<ArrayList<Defecto>> arrayDefectos = new ArrayList<>();arrayDefectos.add(d1);arrayDefectos.add(d2);arrayDefectos.add(d3);arrayDefectos.add(d4);arrayDefectos.add(d5);arrayDefectos.add(d6);arrayDefectos.add(d7);arrayDefectos.add(d8);
         ArrayList<String []> defectosVista = new ArrayList<>();
+        int band1 = 0;
+        int band2 = 0;
+        int band3 = 0;
+        
         for(ArrayList<Defecto> l : arrayDefectos){
             if(l.size() > 0){
-                if(l.size() == listaOrdenada[0]){
-                    String[] def1 = {l.get(0).getDescripcion(),l.get(0).getCodigo()+"",l.size()+""};
+                if(l.size() == listaOrdenada[0] && band1 ==0){
+                    String[] def1 = {l.get(0).getDescripcion(),l.get(0).getCodigo()+"",l.size()+""};                                    
                     defectosVista.add(def1);
+                    band1 = 1;
                 
                 }
-                else if(l.size() == listaOrdenada[1]){
-                    String[] def2 = {l.get(0).getDescripcion(),l.get(0).getCodigo()+"",l.size()+""};
-                    defectosVista.add(def2);
-                
-                }   
-                else if(l.size() == listaOrdenada[2]){
-                    String[] def3 = {l.get(0).getDescripcion(),l.get(0).getCodigo()+"",l.size()+""};
-                    defectosVista.add(def3);
-                  
-                }
-            }          
+            }
         }
-        System.out.print("tamano defectos "+ defectosVista.size());
+        
+        for(ArrayList<Defecto> l : arrayDefectos){
+            if(l.size() > 0){
+             if(l.size() == listaOrdenada[1] && band2 ==0){
+                    String[] def2 = {l.get(0).getDescripcion(),l.get(0).getCodigo()+"",l.size()+""};                                    
+                    defectosVista.add(def2);
+                    band2 = 1;
+                
+                }
+            }
+        }
+        
+        for(ArrayList<Defecto> l : arrayDefectos){
+            if(l.size() > 0){
+             if(l.size() == listaOrdenada[2] && band3 ==0){
+                    String[] def3 = {l.get(0).getDescripcion(),l.get(0).getCodigo()+"",l.size()+""};                                    
+                    defectosVista.add(def3);
+                    band3 = 1;
+                
+                }
+            }
+        }
         vistaDatos.cargarListaDefectos(defectosVista);
     }
 }
