@@ -141,10 +141,10 @@ public final class Repositorio {
         return resultado;
     }
     
-    public ArrayList<OrdenProduccion> obtenerOrdenesDisponibles(){
+    public ArrayList<OrdenProduccion> obtenerOrdenesDisponibles(EstadoOrden estado){
         ArrayList<OrdenProduccion> resultado = new ArrayList<>();
         for(OrdenProduccion op : ordenes){
-            if(op.getEstadoOrden() == EstadoOrden.PROCESO && op.obtenerUltimoPeriodo().getUsuario() == null){
+            if(op.getEstadoOrden() == estado && op.obtenerUltimoPeriodo().getUsuario() == null){
                 resultado.add(op);
             }
         }

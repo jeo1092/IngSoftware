@@ -115,7 +115,7 @@ public class Controlador implements ActionListener{
             vistaAdmOP = new VistaAdministrarOP();
             vistaAdmOP.setControlador(this);
             vistaAdmOP.ejecutar();        
-            vistaAdmOP.setOrdenProduccion(orden.getLineaProduccion().getNumeroLinea(), orden.getModelo().getDescripcion(), orden.getColor().getDescripcion(), orden.getSupervisorLinea().getNombre(), orden.getEstadoOrden().name());
+            vistaAdmOP.setOrdenProduccion(repo.obtenerOPporSupCalidad(usuarioCalidad).getLineaProduccion().getNumeroLinea(), orden.getModelo().getDescripcion(), orden.getColor().getDescripcion(), orden.getSupervisorLinea().getNombre(), orden.getEstadoOrden().name());
         }
         
         if(e.getActionCommand().equals(vistaAdmOP.BTN_MODIFICAR_ESTADO)){
@@ -137,7 +137,7 @@ public class Controlador implements ActionListener{
             VistaCalidad.setControlador(this);
             VistaCalidad.ejecutar();
             ArrayList<String []> filas = new ArrayList<>();
-            for(OrdenProduccion orden : repo.obtenerOrdenesDisponibles()){
+            for(OrdenProduccion orden : repo.obtenerOrdenesDisponibles(EstadoOrden.PROCESO)){
                 String [] valores = {orden.getLineaProduccion().getNumeroLinea()+"", orden.getNumeroOrden()+"",orden.getModelo().getDescripcion(),orden.getColor().getDescripcion(),orden.getEstadoOrden().name()};               
                 filas.add(valores); 
             }         
@@ -160,7 +160,8 @@ public class Controlador implements ActionListener{
             Inspeccion inspeccion = new Inspeccion();
             inspeccion.setCalidad(Calidad.PRIMERA);
             repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspeccion);
-            buscarDefectosEnUltimaHora(4);
+            buscarproduccionPrimera(repo.obtenerOPporSupCalidad(usuarioCalidad));
+            //buscarDefectosEnUltimaHora(4);
         }
         
         if(e.getActionCommand().equals(vistaRegistrar.BTN_REGISTRAR_REPROCESADOS)){
@@ -222,9 +223,12 @@ public class Controlador implements ActionListener{
         }
         
         if(e.getActionCommand().equals(vistaHermanar.BTN_REGISTRAR_PRIMERA)){
+           
             Inspeccion inspeccion = new Inspeccion();
             inspeccion.setCalidad(Calidad.PRIMERA);
             repo.obtenerOPporSupCalidad(usuarioCalidad).obtenerUltimoPeriodo().agregarInspeccion(inspeccion);
+
+            buscarproduccionPrimera(repo.obtenerOPporSupCalidad(usuarioCalidad));
         }
         
         if(e.getActionCommand().equals(vistaHermanar.BTN_REGISTRAR_SEGUNDA)){
@@ -275,6 +279,7 @@ public class Controlador implements ActionListener{
         int band1 = 0;
         int band2 = 0;
         int band3 = 0;
+
         
         for(ArrayList<Defecto> l : arrayDefectos){
             if(l.size() > 0){
@@ -282,32 +287,40 @@ public class Controlador implements ActionListener{
                     String[] def1 = {l.get(0).getDescripcion(),l.get(0).getCodigo()+"",l.size()+""};                                    
                     defectosVista.add(def1);
                     band1 = 1;
-                
                 }
-            }
-        }
-        
-        for(ArrayList<Defecto> l : arrayDefectos){
-            if(l.size() > 0){
-             if(l.size() == listaOrdenada[1] && band2 ==0){
+                else if(l.size() == listaOrdenada[1] && band2 ==0){
                     String[] def2 = {l.get(0).getDescripcion(),l.get(0).getCodigo()+"",l.size()+""};                                    
                     defectosVista.add(def2);
                     band2 = 1;
-                
+  
                 }
-            }
-        }
-        
-        for(ArrayList<Defecto> l : arrayDefectos){
-            if(l.size() > 0){
-             if(l.size() == listaOrdenada[2] && band3 ==0){
+                else if(l.size() == listaOrdenada[2] && band3 ==0){
                     String[] def3 = {l.get(0).getDescripcion(),l.get(0).getCodigo()+"",l.size()+""};                                    
                     defectosVista.add(def3);
                     band3 = 1;
-                
                 }
+                
             }
+            
         }
         vistaDatos.cargarListaDefectos(defectosVista);
+    }
+    
+    public void buscarproduccionPrimera(OrdenProduccion orden){
+        ArrayList<Inspeccion> p = new ArrayList<>();
+        ArrayList<String []> listaVista = new ArrayList<>();
+        
+        for(Inspeccion insp: orden.obtenerUltimoPeriodo().getInspecciones()){
+            try{
+                if(insp.getCalidad().equals(Calidad.PRIMERA)){
+                p.add(insp);
+                }
+            }catch(NullPointerException e){System.out.print("NullPointerException caught");}
+            
+        }
+        String [] fila = {orden.getNumeroOrden()+"",orden.obtenerUltimoPeriodo().gethInicio()+"",p.size()+"",orden.getObjetivo()+""};
+        listaVista.add(fila);
+        
+        vistaDatos.cargarListaProduccion(listaVista);
     }
 }
