@@ -10,6 +10,7 @@ import vista.VistaPrincipalSupervisorLinea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import modelo.*;
 import repositorio.Repositorio;
 
@@ -28,11 +29,15 @@ public class ControladorCrearOrden implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals(VistaPrincipalSupervisorLinea.BTN_CREAROP)){
-            vistaCrearOP = new VistaCrearOP();
-            vistaCrearOP.setControlador(this);
-            vistaCrearOP.ejecutar();
-            nuevaOrden = new OrdenProduccion();
-            setDatosVista();
+            if(Repositorio.obtenerOPporSupLinea(ControladorAutenticacion.getSupervisorLinea())== null){
+                vistaCrearOP = new VistaCrearOP();
+                vistaCrearOP.setControlador(this);
+                vistaCrearOP.ejecutar();
+                nuevaOrden = new OrdenProduccion();
+                setDatosVista();
+            }else{
+                JOptionPane.showMessageDialog(null, "Orden De Produccion en Curso");
+            }
         }
         
         if(e.getActionCommand().equals(vistaCrearOP.BTN_CONFIRMAROP)){

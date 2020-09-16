@@ -128,7 +128,7 @@ public final class Repositorio {
         return valor;
     }
     
-    public OrdenProduccion obtenerOPporSupLinea(Usuario supervisorLinea){
+    public static OrdenProduccion obtenerOPporSupLinea(Usuario supervisorLinea){
         OrdenProduccion resultado = null;
         for(OrdenProduccion op: ordenes){
             if(op.getSupervisorLinea().equals(supervisorLinea) && (op.getEstadoOrden().equals(EstadoOrden.PROCESO) || op.getEstadoOrden().equals(EstadoOrden.PAUSA))){
