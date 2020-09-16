@@ -55,7 +55,7 @@ public class ControladorCrearOrden implements ActionListener {
         ArrayList<Integer> numerosLinea = new ArrayList<>();
         ArrayList<String> descColores = new ArrayList<>();
         ArrayList<String> descModelos = new ArrayList<>();
-        int numeroOP = 0;
+        int numeroOP;
         
         for(LineaProduccion linea: Repositorio.obtenerLineasDisponibles()){
             numerosLinea.add(linea.getNumeroLinea());
@@ -69,7 +69,7 @@ public class ControladorCrearOrden implements ActionListener {
             descModelos.add(modelo.getDescripcion());
         }
         
-        if(numeroOP == 0){
+        if(Repositorio.getOrdenes().size() == 0){
             numeroOP = 1;
         }
         else{

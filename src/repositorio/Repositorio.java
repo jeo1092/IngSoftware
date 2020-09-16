@@ -165,11 +165,13 @@ public final class Repositorio {
         for(LineaProduccion l: lineas){
             int b = 0;
             for(OrdenProduccion op: ordenes){
-                if(l.equals(op.getLineaProduccion())){
+                if(l.equals(op.getLineaProduccion()) && (op.getEstadoOrden().equals(EstadoOrden.PAUSA) || op.getEstadoOrden().equals(EstadoOrden.PROCESO))){
                     b = 1;
                 }
             }
-            lineasDisponibles.add(l);
+            if(b == 0){
+                lineasDisponibles.add(l);
+            }          
         }
         
         return lineasDisponibles;
