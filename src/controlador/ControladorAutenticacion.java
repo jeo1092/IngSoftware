@@ -20,7 +20,7 @@ import repositorio.Repositorio;
  * @author Jose
  */
 public class ControladorAutenticacion implements ActionListener{
-    private Usuario supervisorLinea;
+    private static Usuario supervisorLinea;
     private Usuario supervisorCalidad;
     ControladorCrearOrden controladorCrearOrden;
     VistaAutenticacionUsuario vistaAutenticacionUsuario;
@@ -64,7 +64,7 @@ public class ControladorAutenticacion implements ActionListener{
         controladorCrearOrden = new ControladorCrearOrden();
     }
 
-    public Usuario getSupervisorLinea() {
+    public static Usuario getSupervisorLinea() {
         return supervisorLinea;
     }
 

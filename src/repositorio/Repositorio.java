@@ -98,7 +98,7 @@ public final class Repositorio {
         ordenes.add(orden);
     }
     
-    public Color obtenerColor(String a){
+    public static Color obtenerColor(String a){
         Color valor = null;
         for(Color c: colores){
             if(c.getDescripcion().equals(a)){
@@ -108,7 +108,7 @@ public final class Repositorio {
         return valor;
     }
     
-    public Modelo obtenerModelo(String a){
+    public static Modelo obtenerModelo(String a){
         Modelo valor = null;
         for(Modelo m: modelos){
             if(m.getDescripcion().equals(a)){
@@ -118,7 +118,7 @@ public final class Repositorio {
         return valor;
     }
     
-    public LineaProduccion obtenerLinea(int a){
+    public static LineaProduccion obtenerLinea(int a){
         LineaProduccion valor = null;
         for(LineaProduccion l: lineas){
             if(l.getNumeroLinea()==a){
@@ -194,5 +194,9 @@ public final class Repositorio {
             }
         }
         return resultado;
+    }
+    
+    public static void guardarOrdenProduccion(OrdenProduccion nuevaOrden){
+        ordenes.add(nuevaOrden);
     }
 }

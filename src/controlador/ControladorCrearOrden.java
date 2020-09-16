@@ -34,6 +34,17 @@ public class ControladorCrearOrden implements ActionListener {
             nuevaOrden = new OrdenProduccion();
             setDatosVista();
         }
+        
+        if(e.getActionCommand().equals(vistaCrearOP.BTN_CONFIRMAROP)){
+            nuevaOrden.setNumeroOrden(vistaCrearOP.getNumeroOP());
+            nuevaOrden.setColor(Repositorio.obtenerColor(vistaCrearOP.getColor()));
+            nuevaOrden.setModelo(Repositorio.obtenerModelo(vistaCrearOP.getModelo()));
+            nuevaOrden.setLineaProduccion(Repositorio.obtenerLinea(vistaCrearOP.getNumLinea()));
+            nuevaOrden.setSupervisorLinea(ControladorAutenticacion.getSupervisorLinea());
+            nuevaOrden.setEstadoOrden(EstadoOrden.PROCESO);
+            Repositorio.guardarOrdenProduccion(nuevaOrden);
+            System.out.print(Repositorio.getOrdenes().size());
+        }
     }
     
     public void setDatosVista(){
@@ -59,7 +70,7 @@ public class ControladorCrearOrden implements ActionListener {
         }
         else{
             OrdenProduccion ultimaOrden = Repositorio.getOrdenes().get(Repositorio.getOrdenes().size()-1);
-            numeroOP = ultimaOrden.getNumeroOrden();
+            numeroOP = ultimaOrden.getNumeroOrden()+1;
         }
         
         vistaCrearOP.cargarDatosLinea(numerosLinea, descColores, descModelos, numeroOP);

@@ -25,7 +25,6 @@ public class OrdenProduccion {
  
     public OrdenProduccion(){
        this.periodos = new ArrayList<>();
-       //iniciarNuevoPeriodo();
     }
 
     public final void iniciarNuevoPeriodo(){
