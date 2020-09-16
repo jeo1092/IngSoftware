@@ -48,7 +48,6 @@ public class ControladorCrearOrden implements ActionListener {
             nuevaOrden.setSupervisorLinea(ControladorAutenticacion.getSupervisorLinea());
             nuevaOrden.setEstadoOrden(EstadoOrden.PROCESO);
             Repositorio.guardarOrdenProduccion(nuevaOrden);
-            System.out.print(Repositorio.getOrdenes().size());
         }
     }
     

@@ -23,6 +23,7 @@ public class ControladorAutenticacion implements ActionListener{
     private static Usuario supervisorLinea;
     private Usuario supervisorCalidad;
     ControladorCrearOrden controladorCrearOrden;
+    ControladorAdministrarOrden controladorAdministrarOrden;
     VistaAutenticacionUsuario vistaAutenticacionUsuario;
     VistaPrincipalSupervisorLinea vistaPrincipalSupervisorLinea;
     VistaPrincipalSupervisorCalidad vistaPrincipalSupervisorCalidad;
@@ -46,7 +47,7 @@ public class ControladorAutenticacion implements ActionListener{
                     if(u.getTipo().equals(TipoUsuario.SUPERVISORLINEA)){
                         supervisorLinea = u;
                         vistaPrincipalSupervisorLinea = new VistaPrincipalSupervisorLinea();
-                        vistaPrincipalSupervisorLinea.setControlador(controladorCrearOrden, this);
+                        vistaPrincipalSupervisorLinea.setControlador(controladorCrearOrden, controladorAdministrarOrden);
                         vistaPrincipalSupervisorLinea.ejecutar();
                     }
                     else{
@@ -62,6 +63,7 @@ public class ControladorAutenticacion implements ActionListener{
     
     private void iniciarControladores(){
         controladorCrearOrden = new ControladorCrearOrden();
+        controladorAdministrarOrden = new ControladorAdministrarOrden();
     }
 
     public static Usuario getSupervisorLinea() {

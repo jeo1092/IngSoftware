@@ -25,11 +25,11 @@ public class VistaPrincipalSupervisorLinea extends javax.swing.JFrame {
     this.setVisible(true);
     this.setLocationRelativeTo(null);
     }
-    public void setControlador(ControladorCrearOrden controlCrearOp, ControladorAutenticacion control){
+    public void setControlador(ControladorCrearOrden controlCrearOp, ControladorAdministrarOrden controlAdministrarOp){
         btnCREAROP.setActionCommand(BTN_CREAROP);
         btnCREAROP.addActionListener(controlCrearOp);
-//    btnADMOP.setActionCommand(BTN_ADMINISTRAROP);
-//    btnADMOP.addActionListener(control);
+        btnADMOP.setActionCommand(BTN_ADMINISTRAROP);
+        btnADMOP.addActionListener(controlAdministrarOp);
     }
    
     /**
