@@ -5,6 +5,9 @@
  */
 package modelo;
 
+import controlador.ControladorAutenticacion;
+import repositorio.Repositorio;
+
 
 /**
  *
@@ -16,7 +19,9 @@ public class Principal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+        new Repositorio();
+        ControladorAutenticacion control = new ControladorAutenticacion();
+        control.ejecutar();
     }
     
 }
