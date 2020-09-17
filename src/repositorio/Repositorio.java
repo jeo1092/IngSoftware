@@ -139,10 +139,10 @@ public final class Repositorio {
         return resultado;
     }
     
-    public OrdenProduccion obtenerOPporSupCalidad(Usuario supervisorCalidad){
+    public static OrdenProduccion obtenerOPporSupCalidad(Usuario supervisorCalidad){
         OrdenProduccion resultado = null;
         for(OrdenProduccion op: ordenes){
-            if(op.obtenerUltimoPeriodo().getUsuario().equals(supervisorCalidad)){
+            if(op.obtenerUltimoPeriodo().getUsuario().equals(supervisorCalidad) && op.getEstadoOrden().equals(EstadoOrden.PROCESO)){
                 resultado = op;
                 break;
             }

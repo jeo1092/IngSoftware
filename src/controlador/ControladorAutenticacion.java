@@ -74,7 +74,7 @@ public class ControladorAutenticacion implements ActionListener{
         return supervisorLinea;
     }
 
-    public Usuario getSupervisorCalidad() {
+    public static Usuario getSupervisorCalidad() {
         return supervisorCalidad;
     }
     

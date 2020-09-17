@@ -5,6 +5,8 @@
  */
 package vista;
 
+import controlador.ControladorRegistrarDefecto;
+
 /**
  *
  * @author Jose
@@ -23,8 +25,9 @@ public class VistaRegistrarDefectos extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
     
-    public void setControlador(){
-        
+    public void setControlador(ControladorRegistrarDefecto controlador){
+        jButton1.setActionCommand(BTN_REGISTRO_PRIMERA);
+        jButton1.addActionListener(controlador);
     }
 
     /**
