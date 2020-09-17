@@ -5,7 +5,9 @@
  */
 package vista;
 
+import controlador.ControladorAsignarOrden;
 import controlador.ControladorAutenticacion;
+import controlador.ControladorRegistrarDefecto;
 
 /**
  *
@@ -26,11 +28,11 @@ public class VistaPrincipalSupervisorCalidad extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
     
-    public void setControlador(ControladorAutenticacion control){
-    btnAsignarOrden.setActionCommand(BTN_ASIGNAR_ORDEN);
-    btnAsignarOrden.addActionListener(control);
-    btnRealizarInsp.setActionCommand(BTN_REALIZAR_INSPECCION);
-    btnRealizarInsp.addActionListener(control);
+    public void setControlador(ControladorAsignarOrden controlAsignarOrden, ControladorRegistrarDefecto controlRegistrarDefecto){
+        btnAsignarOrden.setActionCommand(BTN_ASIGNAR_ORDEN);
+        btnAsignarOrden.addActionListener(controlAsignarOrden);
+        btnRealizarInsp.setActionCommand(BTN_REALIZAR_INSPECCION);
+        btnRealizarInsp.addActionListener(controlRegistrarDefecto);
     }
 
     /**

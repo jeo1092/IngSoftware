@@ -177,7 +177,7 @@ public final class Repositorio {
         return lineasDisponibles;
     }
     
-    public OrdenProduccion obtenerOPporNumero(int n){
+    public static OrdenProduccion obtenerOPporNumero(int n){
         OrdenProduccion resultado = null;
         for(OrdenProduccion op: ordenes){
             if(op.getNumeroOrden() == n){

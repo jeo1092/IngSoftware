@@ -21,9 +21,11 @@ import repositorio.Repositorio;
  */
 public class ControladorAutenticacion implements ActionListener{
     private static Usuario supervisorLinea;
-    private Usuario supervisorCalidad;
+    private static Usuario supervisorCalidad;
     ControladorCrearOrden controladorCrearOrden;
     ControladorAdministrarOrden controladorAdministrarOrden;
+    ControladorAsignarOrden controladorAsignarOrden;
+    ControladorRegistrarDefecto controladorRegistrarDefecto;
     VistaAutenticacionUsuario vistaAutenticacionUsuario;
     VistaPrincipalSupervisorLinea vistaPrincipalSupervisorLinea;
     VistaPrincipalSupervisorCalidad vistaPrincipalSupervisorCalidad;
@@ -53,7 +55,7 @@ public class ControladorAutenticacion implements ActionListener{
                     else{
                         supervisorCalidad = u;
                         vistaPrincipalSupervisorCalidad = new VistaPrincipalSupervisorCalidad();
-                        vistaPrincipalSupervisorCalidad.setControlador(this);
+                        vistaPrincipalSupervisorCalidad.setControlador(controladorAsignarOrden, controladorRegistrarDefecto);
                         vistaPrincipalSupervisorCalidad.ejecutar();
                     }
                 }
@@ -64,6 +66,8 @@ public class ControladorAutenticacion implements ActionListener{
     private void iniciarControladores(){
         controladorCrearOrden = new ControladorCrearOrden();
         controladorAdministrarOrden = new ControladorAdministrarOrden();
+        controladorAsignarOrden = new ControladorAsignarOrden();
+        controladorRegistrarDefecto = new ControladorRegistrarDefecto();
     }
 
     public static Usuario getSupervisorLinea() {
