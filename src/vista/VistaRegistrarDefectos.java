@@ -48,6 +48,8 @@ public class VistaRegistrarDefectos extends javax.swing.JFrame {
         DefaultTableModel modeloA2 = tabla2.mostrarDefectos();
         jTable1.setModel(modeloA1);
         jTable2.setModel(modeloA2);
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
+        jTable2.getColumnModel().getColumn(0).setPreferredWidth(10);
         addCheckBox(1,jTable1);
         addCheckBox(2,jTable1);
         addCheckBox(1,jTable2);
