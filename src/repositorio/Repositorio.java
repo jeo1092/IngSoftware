@@ -188,7 +188,7 @@ public final class Repositorio {
         return resultado;
     }
     
-    public Defecto buscarDefectosPorCodigo(int codigo){
+    public static Defecto buscarDefectosPorCodigo(int codigo){
         Defecto resultado= null;
         for(Defecto defecto: defectos){
             if(defecto.getCodigo()==codigo){
@@ -201,4 +201,9 @@ public final class Repositorio {
     public static void guardarOrdenProduccion(OrdenProduccion nuevaOrden){
         ordenes.add(nuevaOrden);
     }
+
+    public static ArrayList<Defecto> getDefectos() {
+        return defectos;
+    }
+    
 }
