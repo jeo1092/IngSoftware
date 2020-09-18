@@ -7,17 +7,15 @@ package vista;
 
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import modelo.Defecto;
-import repositorio.Repositorio;
 
 /**
  *
- * @author Jose Esteban
+ * @author Jose
  */
-public class CargaTablaReproceso {
+public class TablaSeparar {
     private ArrayList<String> filas;
     
-    public CargaTablaReproceso(){
+    public TablaSeparar(){
         this.filas = new ArrayList<>();
     }
     
@@ -43,5 +41,4 @@ public class CargaTablaReproceso {
     public void setFilas(ArrayList<String> filas) {
         this.filas = filas;
     }
-    
 }

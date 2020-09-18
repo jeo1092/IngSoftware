@@ -18,14 +18,15 @@ import javax.swing.table.TableColumn;
 public class VistaRegistrarDefectos extends javax.swing.JFrame {
     public static final String BTN_REGISTRO_PRIMERA = "Se registra un par de primera";
     public static final String BTN_REPROCESO = "se registra defectos por reproceso";
+    public static final String BTN_SEPARAR = "Se registran defectos y se separa el par";
     public ArrayList<Integer> defectosDerecho;
     public ArrayList<Integer> defectosIzquierdo;
     /**
      * Creates new form VistaRegistrarDefectos
      */
-    public VistaRegistrarDefectos(CargaTablaReproceso tablaReproceso) {
+    public VistaRegistrarDefectos(TablaReproceso tablaReproceso, TablaSeparar tablaSeparar) {
         initComponents();
-        mostrarDefectos(tablaReproceso);
+        mostrarDefectos(tablaReproceso,tablaSeparar);
     }
     
     public void ejecutar(){
@@ -38,13 +39,19 @@ public class VistaRegistrarDefectos extends javax.swing.JFrame {
         jButton1.addActionListener(controlador);
         jButton2.setActionCommand(BTN_REPROCESO);
         jButton2.addActionListener(controlador);
+        jButton3.setActionCommand(BTN_SEPARAR);
+        jButton3.addActionListener(controlador);
     }
     
-    public void mostrarDefectos(CargaTablaReproceso tablaCargada){
-        DefaultTableModel modeloA1 = tablaCargada.mostrarDefectos();
-        jTable1.setModel(modeloA1); 
+    public void mostrarDefectos(TablaReproceso tabla1, TablaSeparar tabla2){
+        DefaultTableModel modeloA1 = tabla1.mostrarDefectos();
+        DefaultTableModel modeloA2 = tabla2.mostrarDefectos();
+        jTable1.setModel(modeloA1);
+        jTable2.setModel(modeloA2);
         addCheckBox(1,jTable1);
         addCheckBox(2,jTable1);
+        addCheckBox(1,jTable2);
+        addCheckBox(2,jTable2);
         
     }
     
@@ -71,11 +78,31 @@ public class VistaRegistrarDefectos extends javax.swing.JFrame {
         }
         
         defectosDerecho = new ArrayList<>();
-        for (int i = 0; i < jTable1.getRowCount(); i++)
+        for (int i = 0; i < jTable2.getRowCount(); i++)
         {
-            if  ( IsSelected(i, 2, jTable1))
+            if  ( IsSelected(i, 2, jTable2))
             {
-                defectosDerecho.add(Integer.parseInt(jTable1.getValueAt(i, 0).toString()));
+                defectosDerecho.add(Integer.parseInt(jTable2.getValueAt(i, 0).toString()));
+            }
+        }
+    }
+    
+    public void registrarDefectosDeSeparar(){
+        defectosIzquierdo = new ArrayList<>();
+        for (int i = 0; i < jTable2.getRowCount(); i++)
+        {
+            if  ( IsSelected(i, 1, jTable2))
+            {
+                defectosIzquierdo.add(Integer.parseInt(jTable2.getValueAt(i, 0).toString()));
+            }
+        }
+        
+        defectosDerecho = new ArrayList<>();
+        for (int i = 0; i < jTable2.getRowCount(); i++)
+        {
+            if  ( IsSelected(i, 2, jTable2))
+            {
+                defectosDerecho.add(Integer.parseInt(jTable2.getValueAt(i, 0).toString()));
             }
         }
     }
@@ -153,15 +180,6 @@ public class VistaRegistrarDefectos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(224, 224, 224))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton4)
-                        .addGap(27, 27, 27))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jButton1)
@@ -169,37 +187,40 @@ public class VistaRegistrarDefectos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(jButton3)
-                        .addGap(131, 131, 131))))
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(170, 170, 170))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton3)
-                            .addComponent(jButton2))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                            .addComponent(jButton2)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addGap(17, 17, 17))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(105, 105, 105)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(175, Short.MAX_VALUE))
         );
 
         pack();
