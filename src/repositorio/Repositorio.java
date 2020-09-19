@@ -6,6 +6,8 @@
 package repositorio;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import modelo.Color;
 import modelo.Defecto;
 import modelo.EstadoOrden;
@@ -204,6 +206,11 @@ public final class Repositorio {
 
     public static ArrayList<Defecto> getDefectos() {
         return defectos;
+    }
+    
+    public static int getHora(){
+        Calendar c = new GregorianCalendar();
+        return c.get(Calendar.HOUR_OF_DAY);
     }
     
 }
