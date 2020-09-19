@@ -19,6 +19,7 @@ public class VistaRegistrarDefectos extends javax.swing.JFrame {
     public static final String BTN_REGISTRO_PRIMERA = "Se registra un par de primera";
     public static final String BTN_REPROCESO = "se registra defectos por reproceso";
     public static final String BTN_SEPARAR = "Se registran defectos y se separa el par";
+    public static final String BTN_HERMANAR = "hermanar calzados";
     public ArrayList<Integer> defectosDerecho;
     public ArrayList<Integer> defectosIzquierdo;
     /**
@@ -41,6 +42,8 @@ public class VistaRegistrarDefectos extends javax.swing.JFrame {
         jButton2.addActionListener(controlador);
         jButton3.setActionCommand(BTN_SEPARAR);
         jButton3.addActionListener(controlador);
+        jButton4.setActionCommand(BTN_HERMANAR);
+        jButton4.addActionListener(controlador);
     }
     
     public void mostrarDefectos(TablaReproceso tabla1, TablaSeparar tabla2){

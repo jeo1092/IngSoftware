@@ -19,6 +19,7 @@ import modelo.*;
  */
 public class ControladorRegistrarDefecto implements ActionListener {
     VistaRegistrarDefectos vistaRegistrarDefectos;
+    VistaHermanar vistaHermanar;
     OrdenProduccion ordenInspeccionada;
     TablaReproceso tablaReproceso = new TablaReproceso();
     TablaSeparar tablaSeparar = new TablaSeparar();
@@ -64,8 +65,30 @@ public class ControladorRegistrarDefecto implements ActionListener {
         }
         
         if(e.getActionCommand().equals(vistaRegistrarDefectos.BTN_SEPARAR)){
+            Inspeccion insIzquierdo = new Inspeccion();
+            insIzquierdo.setPie(Pie.IZQUIERDO);
+            vistaRegistrarDefectos.registrarDefectosDeSeparar();
+            for(Integer a: vistaRegistrarDefectos.getDefectosIzquierdo()){
+                insIzquierdo.agregarDefecto(Repositorio.buscarDefectosPorCodigo(a));
+            }
+            ordenInspeccionada.obtenerUltimoPeriodo().agregarInspeccion(insIzquierdo);
             
+            Inspeccion insDerecho = new Inspeccion();
+            insDerecho.setPie(Pie.DERECHO);
+            for(Integer a: vistaRegistrarDefectos.getDefectosDerecho()){
+                insDerecho.agregarDefecto(Repositorio.buscarDefectosPorCodigo(a));
+            }
+            ordenInspeccionada.obtenerUltimoPeriodo().agregarInspeccion(insDerecho);
+            
+            vistaRegistrarDefectos.mostrarDefectos(tablaReproceso, tablaSeparar);
         }
+        
+        if(e.getActionCommand().equals(vistaRegistrarDefectos.BTN_HERMANAR)){
+            vistaHermanar = new VistaHermanar();
+            vistaHermanar.setControlador(new ControladorHermanar(ordenInspeccionada));
+            vistaHermanar.ejecutar();
+        }
+        
     }
     
     public void cargarTablas(){
@@ -77,12 +100,12 @@ public class ControladorRegistrarDefecto implements ActionListener {
         }
         tablaReproceso.setFilas(codigosDefecto);
         
-        ArrayList<String> codigosDefectoS = new ArrayList<>();
+        codigosDefecto = new ArrayList<>();
         for(Defecto defecto: Repositorio.getDefectos()){
             if(defecto.getTipoDefecto().equals(TipoDefecto.SEPARACION)){
-                codigosDefectoS.add(defecto.getCodigo()+"");
+                codigosDefecto.add(defecto.getCodigo()+"");
             }           
         }
-        tablaSeparar.setFilas(codigosDefectoS);
+        tablaSeparar.setFilas(codigosDefecto);
     }
 }
