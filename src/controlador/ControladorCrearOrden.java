@@ -41,12 +41,15 @@ public class ControladorCrearOrden implements ActionListener {
         }
         
         if(e.getActionCommand().equals(vistaCrearOP.BTN_CONFIRMAROP)){
-            nuevaOrden.setNumeroOrden(vistaCrearOP.getNumeroOP());
-            nuevaOrden.setColor(Repositorio.obtenerColor(vistaCrearOP.getColor()));
-            nuevaOrden.setModelo(Repositorio.obtenerModelo(vistaCrearOP.getModelo()));
-            nuevaOrden.setLineaProduccion(Repositorio.obtenerLinea(vistaCrearOP.getNumLinea()));
-            nuevaOrden.setSupervisorLinea(ControladorAutenticacion.getSupervisorLinea());
-            nuevaOrden.setEstadoOrden(EstadoOrden.PROCESO);
+            if(!nuevaOrden.setEstadoOrden(EstadoOrden.PROCESO)){
+                JOptionPane.showMessageDialog(null, "La orden no pudo ser creada porque no hay turnos activos.");
+            }else{
+                nuevaOrden.setNumeroOrden(vistaCrearOP.getNumeroOP());
+                nuevaOrden.setColor(Repositorio.obtenerColor(vistaCrearOP.getColor()));
+                nuevaOrden.setModelo(Repositorio.obtenerModelo(vistaCrearOP.getModelo()));
+                nuevaOrden.setLineaProduccion(Repositorio.obtenerLinea(vistaCrearOP.getNumLinea()));
+                nuevaOrden.setSupervisorLinea(ControladorAutenticacion.getSupervisorLinea());
+            }
             Repositorio.guardarOrdenProduccion(nuevaOrden);
         }
     }

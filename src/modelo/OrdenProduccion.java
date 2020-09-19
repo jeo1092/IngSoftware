@@ -8,6 +8,7 @@ package modelo;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import repositorio.Repositorio;
 
 /**
  *
@@ -45,13 +46,31 @@ public class OrdenProduccion {
         return estadoOrden;
     }
 
-    public void setEstadoOrden(EstadoOrden estadoOrden) {
+    public boolean setEstadoOrden(EstadoOrden estadoOrden){
+        boolean resultado = true;
         if(estadoOrden == EstadoOrden.PROCESO){
-            iniciarNuevoPeriodo();
+            if(controlarTurno()){
+               iniciarNuevoPeriodo();
+            }else{
+                resultado = false;
+            }
         }else{
             finalizarPeriodoActual();
         }
         this.estadoOrden = estadoOrden;
+        return resultado;
+    }
+    
+    public boolean controlarTurno(){
+        int horaInicioOrden = Repositorio.getHora();
+        boolean resultado = false;
+        
+        for(Turno turno: Repositorio.getTurnos()){
+        if(horaInicioOrden>=turno.getHoraInicio() && horaInicioOrden<=turno.getHoraFin()){
+            resultado = true;
+            }
+        }
+        return resultado;
     }
 
     public int getNumeroOrden() {

@@ -8,15 +8,7 @@ package repositorio;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import modelo.Color;
-import modelo.Defecto;
-import modelo.EstadoOrden;
-import modelo.LineaProduccion;
-import modelo.Modelo;
-import modelo.OrdenProduccion;
-import modelo.TipoDefecto;
-import modelo.TipoUsuario;
-import modelo.Usuario;
+import modelo.*;
 
 /**
  *
@@ -29,6 +21,7 @@ public final class Repositorio {
     private static ArrayList<Color> colores;
     private static ArrayList<Modelo> modelos;
     private static ArrayList<Defecto> defectos;
+    private static ArrayList<Turno> turnos;
 
     public Repositorio(){
         this.usuarios = new ArrayList<>();
@@ -37,11 +30,18 @@ public final class Repositorio {
         this.colores = new ArrayList<>();
         this.modelos = new ArrayList<>();
         this.defectos = new ArrayList<>();
+        this.turnos = new ArrayList<>();
         generarUsuarios();
         generarLineas();
         generarColores();
         generarModelos();
         generarDefectosReproceso();
+        generarTurnos();
+    }
+    
+    private void generarTurnos(){
+        turnos.add(new Turno(8, 15, TipoTurno.MAÑANA));
+        turnos.add(new Turno(16, 23, TipoTurno.TARDENOCHE));
     }
     
     private void generarUsuarios(){
@@ -207,6 +207,11 @@ public final class Repositorio {
     public static ArrayList<Defecto> getDefectos() {
         return defectos;
     }
+
+    public static ArrayList<Turno> getTurnos() {
+        return turnos;
+    }
+    
     
     public static int getHora(){
         Calendar c = new GregorianCalendar();

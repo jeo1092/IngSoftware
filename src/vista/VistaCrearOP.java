@@ -116,7 +116,7 @@ public class VistaCrearOP extends javax.swing.JFrame {
         jLabel3.setText("Color");
 
         jOrdenProd.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jOrdenProd.setText("Crear Orden Produccion");
+        jOrdenProd.setText("Previsualizar Orden");
         jOrdenProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jOrdenProdActionPerformed(evt);
