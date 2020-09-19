@@ -91,6 +91,7 @@ public class ControladorRegistrarDefecto implements ActionListener {
         
     }
     
+    // cargarDefectos
     public void cargarTablas(){
         ArrayList<String> codigosDefecto = new ArrayList<>();
         for(Defecto defecto: Repositorio.getDefectos()){
