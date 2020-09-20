@@ -85,9 +85,9 @@ public class VistaRegistrarDefectos extends javax.swing.JFrame {
         defectosDerecho = new ArrayList<>();
         for (int i = 0; i < jTable2.getRowCount(); i++)
         {
-            if  ( IsSelected(i, 2, jTable2))
+            if  ( IsSelected(i, 2, jTable1))
             {
-                defectosDerecho.add(Integer.parseInt(jTable2.getValueAt(i, 0).toString()));
+                defectosDerecho.add(Integer.parseInt(jTable1.getValueAt(i, 0).toString()));
             }
         }
     }

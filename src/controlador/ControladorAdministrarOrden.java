@@ -36,15 +36,15 @@ public class ControladorAdministrarOrden implements ActionListener{
             }           
         }
         
-        if(e.getActionCommand().equals(vistaAdministrarOP.BTN_MODIFICAR_ESTADO)){
+        if(e.getActionCommand().equals(vistaAdministrarOP.BTN_MODIFICAR_ESTADO)){ 
             if(vistaAdministrarOP.getNuevoEstado() == 1){
-                ordenActiva.setEstadoOrden(EstadoOrden.PAUSA);
+                boolean p = ordenActiva.setEstadoOrden(EstadoOrden.PAUSA);
             }
             if(vistaAdministrarOP.getNuevoEstado() == 2){
-                ordenActiva.setEstadoOrden(EstadoOrden.PROCESO);
+                boolean p = ordenActiva.setEstadoOrden(EstadoOrden.PROCESO);
             }
             if(vistaAdministrarOP.getNuevoEstado() == 3){
-                ordenActiva.setEstadoOrden(EstadoOrden.FINALIZADA);
+                boolean p = ordenActiva.setEstadoOrden(EstadoOrden.FINALIZADA);
             }
         }
     }

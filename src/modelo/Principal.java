@@ -6,6 +6,7 @@
 package modelo;
 
 import controlador.ControladorAutenticacion;
+import controlador.ControladorMostrarDatos;
 import repositorio.Repositorio;
 
 
@@ -20,6 +21,7 @@ public class Principal {
      */
     public static void main(String[] args) {
         new Repositorio();
+        new ControladorMostrarDatos();
         ControladorAutenticacion control = new ControladorAutenticacion();
         control.ejecutar();
     }

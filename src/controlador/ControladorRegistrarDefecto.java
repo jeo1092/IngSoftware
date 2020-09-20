@@ -43,6 +43,7 @@ public class ControladorRegistrarDefecto implements ActionListener {
             Inspeccion nuevaInspeccion = new Inspeccion();
             nuevaInspeccion.setCalidad(Calidad.PRIMERA);
             ordenInspeccionada.obtenerUltimoPeriodo().agregarInspeccion(nuevaInspeccion);
+            ControladorMostrarDatos.buscarproduccionPrimera(ordenInspeccionada);
         }
         
         if(e.getActionCommand().equals(vistaRegistrarDefectos.BTN_REPROCESO)){
@@ -62,6 +63,7 @@ public class ControladorRegistrarDefecto implements ActionListener {
             ordenInspeccionada.obtenerUltimoPeriodo().agregarInspeccion(insDerecho);
             
             vistaRegistrarDefectos.mostrarDefectos(tablaReproceso, tablaSeparar);
+            ControladorMostrarDatos.buscarDefectosEnUltimasHoras(4);
         }
         
         if(e.getActionCommand().equals(vistaRegistrarDefectos.BTN_SEPARAR)){
@@ -81,6 +83,7 @@ public class ControladorRegistrarDefecto implements ActionListener {
             ordenInspeccionada.obtenerUltimoPeriodo().agregarInspeccion(insDerecho);
             
             vistaRegistrarDefectos.mostrarDefectos(tablaReproceso, tablaSeparar);
+            ControladorMostrarDatos.buscarDefectosEnUltimasHoras(4);
         }
         
         if(e.getActionCommand().equals(vistaRegistrarDefectos.BTN_HERMANAR)){

@@ -51,13 +51,15 @@ public class OrdenProduccion {
         if(estadoOrden == EstadoOrden.PROCESO){
             if(controlarTurno()){
                iniciarNuevoPeriodo();
+               this.estadoOrden = estadoOrden;
             }else{
                 resultado = false;
             }
         }else{
             finalizarPeriodoActual();
+            this.estadoOrden = estadoOrden;
         }
-        this.estadoOrden = estadoOrden;
+        
         return resultado;
     }
     

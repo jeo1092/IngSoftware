@@ -28,6 +28,7 @@ public class ControladorHermanar implements ActionListener{
             Inspeccion nuevaInspeccion = new Inspeccion();
             nuevaInspeccion.setCalidad(Calidad.PRIMERA);
             ordenEnCurso.obtenerUltimoPeriodo().agregarInspeccion(nuevaInspeccion);
+            ControladorMostrarDatos.buscarproduccionPrimera(ordenEnCurso);
         }
         
         if(e.getActionCommand().equals(vistaHermanar.BTN_REGISTRO_SEGUNDA)){
