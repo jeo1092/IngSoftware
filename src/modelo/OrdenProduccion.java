@@ -29,18 +29,18 @@ public class OrdenProduccion {
     }
 
     public final void iniciarNuevoPeriodo(){
-        periodos.add(new PeriodoFuncionamiento(generarHorario()));
+        periodos.add(new PeriodoFuncionamiento(Repositorio.getHora()));
     }
     
     public final void finalizarPeriodoActual(){
         PeriodoFuncionamiento p = periodos.get(periodos.size() - 1);
-        p.sethFinal(generarHorario());
+        p.sethFinal(Repositorio.getHora());
     }
     
-    private int generarHorario(){
-        Calendar c = new GregorianCalendar();
-        return (int)c.get(Calendar.HOUR_OF_DAY);
-    }
+//    private int generarHorario(){
+//        Calendar c = new GregorianCalendar();
+//        return (int)c.get(Calendar.HOUR_OF_DAY);
+//    }
 
     public EstadoOrden getEstadoOrden() {
         return estadoOrden;

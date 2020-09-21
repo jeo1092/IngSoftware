@@ -26,7 +26,7 @@ public class ControladorAdministrarOrden implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals(VistaPrincipalSupervisorLinea.BTN_ADMINISTRAROP)){
             ordenActiva = Repositorio.obtenerOPporSupLinea(ControladorAutenticacion.getSupervisorLinea());
-            if(ordenActiva != null){
+            if(ordenActiva != null ){
                 vistaAdministrarOP = new VistaAdministrarOP();
                 vistaAdministrarOP.setControlador(this);
                 vistaAdministrarOP.ejecutar();
