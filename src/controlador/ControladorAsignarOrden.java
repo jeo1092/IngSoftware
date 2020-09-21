@@ -12,6 +12,7 @@ import repositorio.Repositorio;
 import vista.*;
 import modelo.*;
 import controlador.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,10 +26,14 @@ public class ControladorAsignarOrden implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals(VistaPrincipalSupervisorCalidad.BTN_ASIGNAR_ORDEN)){
-            vistaAsignarOP = new VistaAsignarOP();
-            vistaAsignarOP.setControlador(this);
-            vistaAsignarOP.ejecutar();
-            setDatosVista();
+            if(ordenElegida == null){
+                vistaAsignarOP = new VistaAsignarOP();
+                vistaAsignarOP.setControlador(this);
+                vistaAsignarOP.ejecutar();
+                setDatosVista();
+            }else{
+                JOptionPane.showMessageDialog(null, "Ya existe una orden en proceso");
+            }          
         }
         
         if(e.getActionCommand().equals(vistaAsignarOP.BTN_CONFIRMAR)){
