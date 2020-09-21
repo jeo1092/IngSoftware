@@ -33,7 +33,6 @@ public class ControladorAutenticacion implements ActionListener{
     
     public ControladorAutenticacion(){
         this.vistaAutenticacionUsuario = new VistaAutenticacionUsuario();
-        iniciarControladores();
     }
     
     public void ejecutar(){
@@ -48,24 +47,29 @@ public class ControladorAutenticacion implements ActionListener{
                 if(vistaAutenticacionUsuario.getUsuario().equals(u.getNombre())){
                     if(u.getTipo().equals(TipoUsuario.SUPERVISORLINEA)){
                         supervisorLinea = u;
+                        iniciarControladoresSupervisorLinea();
                         vistaPrincipalSupervisorLinea = new VistaPrincipalSupervisorLinea();
                         vistaPrincipalSupervisorLinea.setControlador(controladorCrearOrden, controladorAdministrarOrden);
-                        vistaPrincipalSupervisorLinea.ejecutar();
+                        vistaPrincipalSupervisorLinea.ejecutar();                       
                     }
                     else{
                         supervisorCalidad = u;
+                        iniciarControladoresSupervisorCalidad();
                         vistaPrincipalSupervisorCalidad = new VistaPrincipalSupervisorCalidad();
                         vistaPrincipalSupervisorCalidad.setControlador(controladorAsignarOrden, controladorRegistrarDefecto);
-                        vistaPrincipalSupervisorCalidad.ejecutar();
+                        vistaPrincipalSupervisorCalidad.ejecutar();                      
                     }
                 }
             }
         }
     }
     
-    private void iniciarControladores(){
+    private void iniciarControladoresSupervisorLinea(){
         controladorCrearOrden = new ControladorCrearOrden();
         controladorAdministrarOrden = new ControladorAdministrarOrden();
+    }
+    
+    private void iniciarControladoresSupervisorCalidad(){
         controladorAsignarOrden = new ControladorAsignarOrden();
         controladorRegistrarDefecto = new ControladorRegistrarDefecto();
     }
