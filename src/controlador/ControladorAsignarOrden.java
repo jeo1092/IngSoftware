@@ -32,7 +32,7 @@ public class ControladorAsignarOrden implements ActionListener{
                 vistaAsignarOP.ejecutar();
                 setDatosVista();
             }else{
-                JOptionPane.showMessageDialog(null, "Ya existe una orden en proceso");
+                JOptionPane.showMessageDialog(null, "El usuario ya se encuentra asignado a una orden");
             }          
         }
         
