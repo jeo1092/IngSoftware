@@ -49,8 +49,9 @@ public class ControladorCrearOrden implements ActionListener {
                 nuevaOrden.setModelo(Repositorio.obtenerModelo(vistaCrearOP.getModelo()));
                 nuevaOrden.setLineaProduccion(Repositorio.obtenerLinea(vistaCrearOP.getNumLinea()));
                 nuevaOrden.setSupervisorLinea(ControladorAutenticacion.getSupervisorLinea());
+                Repositorio.guardarOrdenProduccion(nuevaOrden);
             }
-            Repositorio.guardarOrdenProduccion(nuevaOrden);
+            
         }
     }
     
