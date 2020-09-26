@@ -105,7 +105,7 @@ public class OrdenProduccion {
 
     public void setLineaProduccion(LineaProduccion lineaProduccion) {
         this.lineaProduccion = lineaProduccion;
-        lineaProduccion.setEstadoLinea(EstadoLinea.OCUPADA);
+        //lineaProduccion.setEstadoLinea(EstadoLinea.OCUPADA);
     }
 
     public Usuario getSupervisorLinea() {

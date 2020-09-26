@@ -51,10 +51,8 @@ public class ControladorAsignarOrden implements ActionListener{
     private void setDatosVista(){
         ArrayList<String[]> filas = new ArrayList<>();
         for(OrdenProduccion op : buscarOrdenesDisponibles()){
-            if((op.getEstadoOrden().equals(EstadoOrden.PROCESO) /*|| op.getEstadoOrden().equals(EstadoOrden.PAUSA)*/) && op.obtenerUltimoPeriodo().getUsuario() == null){
                 String[] datos = {op.getLineaProduccion().getNumeroLinea()+"",op.getNumeroOrden()+"",op.getModelo().getDescripcion(),op.getColor().getDescripcion(),op.getEstadoOrden().name()};
                 filas.add(datos);
-            }
             vistaAsignarOP.cargarLista(filas);
         }
     }
@@ -62,7 +60,7 @@ public class ControladorAsignarOrden implements ActionListener{
     private ArrayList<OrdenProduccion> buscarOrdenesDisponibles(){
         ordenesDisponibles = new ArrayList<>();
         for(OrdenProduccion op : Repositorio.getOrdenes()){
-            if((op.getEstadoOrden().equals(EstadoOrden.PROCESO) || op.getEstadoOrden().equals(EstadoOrden.PAUSA)) && op.obtenerUltimoPeriodo().getUsuario() == null){
+            if((op.getEstadoOrden().equals(EstadoOrden.PROCESO)) && op.obtenerUltimoPeriodo().getUsuario() == null){
                 ordenesDisponibles.add(op);
             }
         }

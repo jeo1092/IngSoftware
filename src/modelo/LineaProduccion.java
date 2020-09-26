@@ -11,22 +11,22 @@ package modelo;
  */
 public class LineaProduccion {
     private final int numeroLinea;
-    private EstadoLinea estadoLinea;
+//    private EstadoLinea estadoLinea;
     
     public LineaProduccion(int numeroLinea){
         this.numeroLinea = numeroLinea;
-        this.estadoLinea = EstadoLinea.LIBRE;
+//        this.estadoLinea = EstadoLinea.LIBRE;
     }
 
     public int getNumeroLinea() {
         return numeroLinea;
     }
 
-    public EstadoLinea getEstadoLinea() {
-        return estadoLinea;
-    }
-
-    public void setEstadoLinea(EstadoLinea estadoLinea) {
-        this.estadoLinea = estadoLinea;
-    }
+//    public EstadoLinea getEstadoLinea() {
+//        return estadoLinea;
+//    }
+//
+//    public void setEstadoLinea(EstadoLinea estadoLinea) {
+//        this.estadoLinea = estadoLinea;
+//    }
 }
