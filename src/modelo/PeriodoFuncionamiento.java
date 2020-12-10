@@ -23,7 +23,9 @@ public class PeriodoFuncionamiento {
     }
     
     public void agregarInspeccion(Inspeccion inspeccion){
-        inspecciones.add(inspeccion);
+        if(inspeccion != null){
+            inspecciones.add(inspeccion);
+        }
     }
 
     public ArrayList<Inspeccion> getInspecciones() {
