@@ -48,6 +48,31 @@ public class OrdenProduccionTest {
         OrdenProduccion instance = new OrdenProduccion();
         boolean result = instance.controlarTurno();
         assertTrue("No pertenece a un turno definido", result);
-    }    
+    }
 
+    @Test
+    public void testAgregarUnNuevoPeriodoSiElEstadoDeLaOrdenSeModificaAEnProceso(){
+        OrdenProduccion instance = new OrdenProduccion();
+        int cantidadDePeriodos = instance.getPeriodos().size();
+        instance.setEstadoOrden(EstadoOrden.PROCESO);
+        assertEquals("No se agrego un nuevo periodo",instance.getPeriodos().size(),cantidadDePeriodos+1);
+    }
+    
+    @Test
+    public void testNoAgregarUnNuevoPeriodoSiElEstadoDeLaOrdenSeModificaAFinalizada(){
+        OrdenProduccion instance = new OrdenProduccion();
+        instance.iniciarNuevoPeriodo();
+        int cantidadDePeriodos = instance.getPeriodos().size();
+        instance.setEstadoOrden(EstadoOrden.FINALIZADA);
+        assertEquals("Se agrego un nuevo periodo",instance.getPeriodos().size(),cantidadDePeriodos);
+    }
+    
+    @Test
+    public void testNoAgregarUnNuevoPeriodoSiElEstadoDeLaOrdenSeModificaAEnPausa(){
+        OrdenProduccion instance = new OrdenProduccion();
+        instance.iniciarNuevoPeriodo();
+        int cantidadDePeriodos = instance.getPeriodos().size();
+        instance.setEstadoOrden(EstadoOrden.PAUSA);
+        assertEquals("Se agrego un nuevo periodo",instance.getPeriodos().size(),cantidadDePeriodos);
+    }
 }
